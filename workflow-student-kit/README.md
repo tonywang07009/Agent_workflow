@@ -12,7 +12,9 @@
 | 位置 | 用途 |
 |---|---|
 | `index.html` | 互動式架構說明網站 |
-| `skills/` | 11 個通用 skills 與所需附屬參考文件 |
+| `skills/` | 12 個 skills：`workflow` 統一入口，以及 11 個通用 skills 與附屬參考文件 |
+| `skills/workflow/SKILL.md` | 英文流程入口：續接摘要、以 change 為停點、跨專案累計與結案詢問 |
+| `skills/workflow/references/customization.md` | 自訂位置對照、使用範例與行為驗收情境 |
 | `course/workflow.html` | Archify 產生的互動架構圖 |
 | `course/workflow.json` | 可再次編輯、驗證的 Archify 內容的檔案 |
 | `course/lesson.json` | 8 張教學卡的資料，包含講解、提示詞、停止條件、練習答案、講者節奏與來源引用；合計 90 分鐘 |
@@ -38,12 +40,29 @@ python3 verify.py
 python3 install.py /absolute/path/to/your-practice-repo
 ```
 
-- 安裝完成後,請下以下提示詞
+- 安裝完成後，在目標練習專案啟用：
 
 ```text
-請讀 .agents/skills/grill-with-docs/SKILL.md 與 workflow.md。
-並且說明對應內容
+$workflow
+請啟動或接續目前專案，先簡要說明實作目標、進度、下一步與 OpenSpec 路徑。
 ```
+
+若目前環境尚未辨識新安裝的 skill，可明確請 Agent 讀取
+`.agents/skills/workflow/SKILL.md` 並依其指引執行。
+
+初始模式會在每個完整 change 結束後停下；change 內接續規格、實作、
+驗證與同步封存。整個大專案納入的 changes 全部完成才累計一次 workflow。
+同一台電腦的同一使用者跨專案累計滿 5 次後，詢問是否改為自動接續 changes；
+拒絕後不再主動重問，隨時可要求切換或切回。每個完整 workflow 結案後，
+另行詢問是否進行 Skill／Wiki 整理。
+
+共用紀錄預設存在使用者家目錄的 `.workflow/state.json`，不放進教材或練習 repo。
+安裝不建立該紀錄；實際啟用後需要保存時，若環境限制家目錄寫入，Agent 會走
+環境授權流程。OpenSpec CLI 與目標專案設定須可用；Wiki 則依目標專案另行提供。
+Skill 指引使用英文，Agent 仍依使用者語言回報。
+
+維護者驗證：`python3 -B -m unittest discover -s tests`；紀錄工具測試使用暫存目錄。
+Windows 若無 `python3` 指令，可使用 `python`。
 
 ## 備註
 

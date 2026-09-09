@@ -1,7 +1,7 @@
 {
   "date": "2026-09-09",
   "source_project": "Red_cap_openairinterface5g_exp",
-  "scope": "11 workflow skills; project-specific MCP configuration and credentials excluded",
+  "scope": "11 imported workflow skills plus one original workflow entrypoint; project-specific MCP configuration and credentials excluded",
   "adaptation": "OpenSpec copies add host-tool/path compatibility guidance; active source skills unchanged",
   "files": [
     {
@@ -179,5 +179,21 @@
       "package_sha256": "859f9e592c188fda4fc7277dd180e4ce9c7a2e13f6efe1f6f29eccc9d28c106a",
       "adapted": false
     }
-  ]
+  ],
+  "original_additions": {
+    "date": "2026-09-10",
+    "scope": "skills/workflow and tests/test_workflow_state.py",
+    "origin": "Authored for this teaching bundle from user-confirmed workflow decisions; English instructions requested by the user",
+    "behavior": "Change checkpoints; resume summaries; local cross-project five-workflow mode offer; optional project-closeout Skill/Wiki review",
+    "files": [
+      "skills/workflow/SKILL.md",
+      "skills/workflow/agents/openai.yaml",
+      "skills/workflow/references/customization.md",
+      "skills/workflow/references/delivery.md",
+      "skills/workflow/references/knowledge.md",
+      "skills/workflow/references/state.md",
+      "skills/workflow/scripts/state.py",
+      "tests/test_workflow_state.py"
+    ]
+  }
 }
