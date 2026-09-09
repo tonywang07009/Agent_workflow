@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "RedCap：從需求到知識演進",
+    "quality_profile": "showcase",
+    "animation": "trace"
+  },
+  "lanes": [
+    {
+      "id": "delivery",
+      "label": "需求到驗收"
+    },
+    {
+      "id": "knowledge",
+      "label": "工具與知識演進"
+    }
+  ],
+  "mainPath": [
+    "intent",
+    "design",
+    "spec",
+    "apply",
+    "review",
+    "close"
+  ],
+  "nodes": [
+    {
+      "id": "intent",
+      "lane": "delivery",
+      "col": 0,
+      "type": "frontend",
+      "label": "釐清需求",
+      "sublabel": "目標與停止條件"
+    },
+    {
+      "id": "design",
+      "lane": "delivery",
+      "col": 1,
+      "type": "backend",
+      "label": "領域與架構",
+      "sublabel": "術語、owner、interface"
+    },
+    {
+      "id": "spec",
+      "lane": "delivery",
+      "col": 2,
+      "type": "database",
+      "label": "OpenSpec 規格",
+      "sublabel": "行為、設計、驗收"
+    },
+    {
+      "id": "apply",
+      "lane": "delivery",
+      "col": 3,
+      "type": "backend",
+      "label": "Apply 與 TDD",
+      "sublabel": "先 RED，再最小 GREEN"
+    },
+    {
+      "id": "review",
+      "lane": "delivery",
+      "col": 4,
+      "type": "security",
+      "label": "審查與驗證",
+      "sublabel": "Standards 與 Spec"
+    },
+    {
+      "id": "close",
+      "lane": "delivery",
+      "col": 5,
+      "type": "database",
+      "label": "同步與封存",
+      "sublabel": "保留可重現證據"
+    },
+    {
+      "id": "wiki",
+      "lane": "knowledge",
+      "col": 3,
+      "type": "database",
+      "label": "Wiki 知識整理",
+      "sublabel": "來源、推論與待審"
+    },
+    {
+      "id": "candidate",
+      "lane": "knowledge",
+      "col": 4,
+      "type": "backend",
+      "label": "提出一個候選",
+      "sublabel": "重複根因與正反證據"
+    },
+    {
+      "id": "human",
+      "lane": "knowledge",
+      "col": 5,
+      "type": "security",
+      "label": "驗證與人審",
+      "sublabel": "啟用或維持原版"
+    },
+    {
+      "id": "tools",
+      "lane": "knowledge",
+      "col": 0,
+      "type": "external",
+      "label": "MCP 與 CLI",
+      "sublabel": "依問題取得證據"
+    }
+  ],
+  "edges": [
+    {
+      "from": "intent",
+      "to": "design"
+    },
+    {
+      "from": "design",
+      "to": "spec"
+    },
+    {
+      "from": "spec",
+      "to": "apply"
+    },
+    {
+      "from": "apply",
+      "to": "review"
+    },
+    {
+      "from": "review",
+      "to": "close"
+    },
+    {
+      "from": "close",
+      "to": "wiki",
+      "role": "branch",
+      "label": "留存知識"
+    },
+    {
+      "from": "wiki",
+      "to": "candidate"
+    },
+    {
+      "from": "candidate",
+      "to": "human"
+    },
+    {
+      "from": "apply",
+      "to": "tools",
+      "label": "按需查詢",
+      "role": "branch"
+    }
+  ]
+}

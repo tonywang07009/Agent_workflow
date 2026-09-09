@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "checks": [
+    "8 clickable cards",
+    "details and answers",
+    "next navigation",
+    "Escape closes dialog",
+    "horizontal containment"
+  ],
+  "measurements": [
+    {
+      "width": 1440,
+      "height": 900,
+      "scroll": 1440,
+      "cards": 8
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "scroll": 1600,
+      "cards": 8
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "scroll": 1920,
+      "cards": 8
+    },
+    {
+      "width": 2048,
+      "height": 1320,
+      "scroll": 2048,
+      "cards": 8
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "scroll": 390,
+      "cards": 8
+    }
+  ]
+}

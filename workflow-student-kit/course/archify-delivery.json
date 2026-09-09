@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "workflow",
+  "input": "/tmp/redcap-course-package/course/workflow.json",
+  "output": "/tmp/redcap-course-package/course/workflow.html",
+  "specification": {
+    "sha256": "60ab7e29d08ad8ec1e10abcf6f983a325b5864722e0a0289f52412ce3b789448",
+    "bytes": 2904
+  },
+  "artifact": {
+    "sha256": "d91484e91f79d7ea8e2217c93c0425798d8a7e955db2755a7e27316aec0b7fee",
+    "bytes": 806644
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

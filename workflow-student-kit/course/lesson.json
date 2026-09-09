@@ -1,0 +1,248 @@
+[
+  {
+    "id": "map",
+    "title": "先看整張地圖",
+    "time": "00–08",
+    "minutes": 8,
+    "tag": "共同語言",
+    "lead": "把「要做什麼、怎麼做、用什麼、相信什麼」分開。",
+    "goal": "能用一句話區分 Skill、MCP、OpenSpec 與 Wiki。",
+    "points": [
+      "Skill 是可重用的操作指引；由 agent 讀取後執行，不等於背景常駐程序。",
+      "MCP 是 host／client 與 server 交換工具、資源等能力的協定；CLI 是另一種工具入口。",
+      "OpenSpec 保存這次改動的要求、設計、任務；Wiki 保存可重用的來源、結論與限制。",
+      "主線：需求 → 領域與架構 → 規格 → TDD → 審查驗證 → 同步封存 → 知識整理 → 候選 → 人審。"
+    ],
+    "demo": "開啟上方 Archify 大圖，請學員指出：工具在哪裡？誰決定需求？誰允許知識變成 confirmed？",
+    "prompt": "請讀目前專案 AGENTS.md 與主工作流，只列本次任務需要的入口、證據與停止條件。",
+    "output": "一份四欄對照：要求／程序／工具／證據。",
+    "stop": "工具清單不能推導為工具都健康；本課不啟動 RFsim 或 live control。",
+    "question": "安裝更多 MCP，會自動得到更好的規格嗎？",
+    "answer": "不會。需求與驗收仍由人與 OpenSpec 決定；工具只提供可用能力。",
+    "notes": [
+      "0–2 分：用「資源不足時不得發送」介紹貫穿案例，這是教學假設而非已完成實驗。",
+      "2–5 分：四個名詞各給一個檔案或操作例子。",
+      "5–8 分：沿主線走一遍，讓學員用自己的話重述。"
+    ],
+    "sources": [
+      "workflow.md",
+      "project-toolbox.md"
+    ]
+  },
+  {
+    "id": "intent",
+    "title": "釐清需求與驗收",
+    "time": "08–18",
+    "minutes": 10,
+    "tag": "grill-with-docs",
+    "lead": "先找出還沒決定的行為，一次只問一個決策。",
+    "goal": "把模糊需求改寫成可觀察的成功與拒絕條件。",
+    "points": [
+      "讀 AGENTS.md、範圍內設計與現況，先查事實再提問。",
+      "寫明 goal、non-goals、owner、acceptance、stop／rollback。",
+      "已決定的事情直接沿用；只有未決定且會影響行為的部分進入 grilling。",
+      "本例先定義「不足」：available < required；available = required 應允許。負值與非法輸入另列拒絕條件。"
+    ],
+    "demo": "練習一（4 分鐘）：將「讓排程更穩定」改成一條可測需求。兩人互問：要觀察哪個輸出才算完成？",
+    "prompt": "$grill-with-docs\n需求：資源不足時不得發送。請先查既有規則，再一次問一個尚未決定的行為；不要實作。",
+    "output": "一個驗收句：Given 可用量小於需求量，When 嘗試送出，Then 回傳拒絕且 send 次數為 0。",
+    "stop": "不知道資源單位或拒絕副作用時，先補定義；不自行替使用者決定。",
+    "question": "「不 crash」能證明拒絕後沒有發送嗎？",
+    "answer": "不能，需要觀察 send 計數或同一 interface 下的可見副作用。",
+    "notes": [
+      "前 3 分：示範把形容詞改成可觀察行為。",
+      "中間 4 分：學員寫一條 Given／When／Then。",
+      "最後 3 分：抽一組答案，加入剛好等於與負值反例。"
+    ],
+    "sources": [
+      "workflow.md"
+    ]
+  },
+  {
+    "id": "design",
+    "title": "領域語言與深 module",
+    "time": "18–30",
+    "minutes": 12,
+    "tag": "domain-modeling · codebase-design",
+    "lead": "讓 caller 少學規則，把同一概念的變更集中在 owner。",
+    "goal": "說明 interface 的義務，並判斷新抽象是否必要。",
+    "points": [
+      "domain-modeling 釐清詞彙與關係；CONTEXT.md 詞彙表不放實作設計。專案 wiki 的 CONTEXT.md 是另一份 context-packet 契約，不能混用。",
+      "interface 包含參數、前置條件、順序、錯誤與副作用；不只是函式名稱。",
+      "depth 看 caller 得到的 leverage；locality 看同一規則是否能在一個 owner 修改與驗證。",
+      "deletion test：刪掉後複雜度消失，是轉手層候選；刪掉後規則散到多個 caller，表示 module 有價值。",
+      "沒有真實變動需求就沿用既有 interface。兩個真實 adapter 才支持實際可替換性，不為了圖漂亮新增假 adapter。"
+    ],
+    "demo": "比較：每個 caller 自行檢查再發送；與既有 admission module 同時負責判定和拒絕結果。圈出測試入口與 state owner。",
+    "prompt": "$codebase-design\n以現有 owner 為起點，列 interface 義務與 deletion test；只在有具體摩擦時比較 before／after。\n$domain-modeling\n確認 available、required、refusal 的精確意思。",
+    "output": "design.md 中的 owner、interface、seam、錯誤與測試決策；必要時更新既有 glossary。",
+    "stop": "未找到 owner 就不另建平行實作；既有設計足夠就停止架構掃描。",
+    "question": "把所有函式縮成一行，module 就更 deep 嗎？",
+    "answer": "不是。深度取決於 interface 的能力與認知負擔，而不是程式行數比例。",
+    "notes": [
+      "前 4 分：以資源單位示範領域詞彙與實作參數的不同。",
+      "中間 5 分：畫 before／after，讓學員用 deletion test 挑戰新 wrapper。",
+      "最後 3 分：說明只在真實架構摩擦時使用 improve-codebase-architecture。"
+    ],
+    "sources": [
+      "workflow.md",
+      "wiki-context.md"
+    ]
+  },
+  {
+    "id": "spec",
+    "title": "寫規格時就帶入架構",
+    "time": "30–42",
+    "minutes": 12,
+    "tag": "OpenSpec propose",
+    "lead": "行為寫進 specs；如何承擔複雜度寫進 design。",
+    "goal": "知道四種 artifact 的責任與依賴順序。",
+    "points": [
+      "proposal.md：為何需要改、影響範圍與 non-goals。",
+      "specs：以領域語言寫正常、拒絕與邊界情境，不用未驗證實作冒充需求。",
+      "design.md：沿用 owner、interface 義務、seam 選擇與 before／after 理由。",
+      "tasks.md：以驗收切片，連到 production 使用的同一個 interface 測試。",
+      "propose 讀主工作流；apply 在讀取 CLI context files 後核對設計；review 依 Standards／Spec 檢查。專案 config.yaml 仍是 schema 設定，這次整合主要由 skill 入口生效。"
+    ],
+    "demo": "只讀示範：openspec list --json。挑一個既有 change，對照 proposal、design、specs、tasks 各回答哪個問題。",
+    "prompt": "$openspec-propose\n為「資源不足拒絕且不發送」建立提案。沿用現有 owner；specs 寫可觀察情境，design 寫 interface 義務，tasks 覆蓋不足／剛好／充足。",
+    "output": "可供 apply 使用且範圍已確認的 artifacts；存在檔案不代表已批准執行。",
+    "stop": "需求或驗收改變時回到 OpenSpec；不得從勾選完成推論 runtime 成功。",
+    "question": "將 send_count = 0 只寫在 tasks，漏在 specs，可以嗎？",
+    "answer": "會失去行為要求的權威來源。先在 specs 定義，再讓 tasks 連到檢查。",
+    "notes": [
+      "前 4 分：四份文件各看一個短段落。",
+      "中間 5 分：請學員把「回傳拒絕」與「不產生發送副作用」分開列驗收。",
+      "最後 3 分：講 CLI 動態路徑；下載包不保證各版本都有本專案延伸欄位。"
+    ],
+    "sources": [
+      "workflow.md"
+    ]
+  },
+  {
+    "id": "tools",
+    "title": "MCP 怎麼接到每一步",
+    "time": "42–52",
+    "minutes": 10,
+    "tag": "取證工具",
+    "lead": "由問題選工具，工具回傳證據，agent 再判斷能支持什麼。",
+    "goal": "正確區分 MCP、CLI、文件與實際權限。",
+    "points": [
+      "來源關係：Symdex MCP 查定義、caller、callee；MCP 未索引或無法回答才依專案規則使用本機 Symdex CLI。",
+      "Git：RTK 優先取得 status／diff／log；RTK 是 CLI 包裝工具，不是每次都經過 MCP。",
+      "文件：直接讀取 Markdown／設定／log；PDF 優先找快取，必要時用 MinerU／轉換工具。刷新快取是寫入。",
+      "OpenSpec CLI 管理 artifact；CMake／CTest 驗證程式；Archify CLI 產生教學圖。它們不是因為被 agent 使用就變成 MCP。",
+      "外部 Drive／GitHub 只在需要交付或協作時接入。今天沒有把憑證或個人 MCP 設定放進下載包。"
+    ],
+    "demo": "在下方工具對照表選一列：問「誰呼叫這個函式」與問「上次 log 的 marker 是什麼」，讓學員挑不同入口。",
+    "prompt": "先讀 AGENTS.md 的 File Query Workflow。此題只需確認 caller：檢查 Symdex MCP 是否可用；依規則回報 fallback 與證據，不掃全 repo。",
+    "output": "工具、查詢範圍、回傳定位、可支持結論與限制。",
+    "stop": "本次會話未提供 Symdex／MinerU MCP 可呼叫介面；歷史 Toolbox health 不是當下健康證明。",
+    "question": "MCP server 宣告一個 write tool，就代表 agent 已獲准修改嗎？",
+    "answer": "不代表；可用能力與本次授權、檔案權限、專案規則仍分開判斷。",
+    "notes": [
+      "前 3 分：畫 host → client → server → resource／tool；補一條 shell → CLI。",
+      "中間 4 分：以 caller／diff／PDF／結果發布四種題目分組選工具。",
+      "最後 3 分：示範讀到來源路徑仍不等於證明 runtime apply。"
+    ],
+    "sources": [
+      "project-toolbox.md"
+    ]
+  },
+  {
+    "id": "test",
+    "title": "TDD、審查與證據階梯",
+    "time": "52–65",
+    "minutes": 13,
+    "tag": "Apply → Review → Archive",
+    "lead": "先看到預期的失敗，再用最小改動得到可信的通過。",
+    "goal": "分清 RED、GREEN、review 與 runtime outcome。",
+    "points": [
+      "RED：失敗原因必須是目標行為未實作；編譯錯誤或環境錯誤不算有效 RED。",
+      "GREEN：在既有 owner 實作，測試穿過 production interface；拒絕時驗證沒有 send 副作用。",
+      "涵蓋不足、剛好、充足、非法輸入；有共享狀態才增加競爭與生命週期檢查。",
+      "Standards 查規則與可維護性；Spec 查需求缺漏、錯誤與額外行為，兩軸分開報告。",
+      "build → transport → ACK → accept／reject → apply → outcome 是不同證據。完成驗收與 review 才 sync／archive；commit／push 仍需該範圍授權。"
+    ],
+    "demo": "展示假想 trace：request accepted、E2 ACK、缺少 gNB apply marker。請學員為「控制成功」投 PASS／PARTIAL／BLOCKED。這是判讀練習，不是假造 runtime log。",
+    "prompt": "$openspec-apply-change <change-name>\n先核對設計與測試入口。若本次只授權 RED，確認預期失敗後停止；若授權完整實作，逐驗收條件 RED → GREEN，再執行相關 review。",
+    "output": "命令、退出碼、原始 log、驗收對應與 claim boundary。",
+    "stop": "缺 apply marker 不能報控制套用成功；測試不足回 TDD，驗收改變回 OpenSpec。",
+    "question": "收到 ACK，就可以寫「UE 效能改善」嗎？",
+    "answer": "不可以，還需要接受、套用與效果指標；這三種證據不能互相替代。",
+    "notes": [
+      "前 4 分：口述有效 RED 與環境失敗差異。",
+      "中間 5 分：討論 no-send-on-refusal 與測試穿過同一 interface。",
+      "最後 4 分：用假想 trace 練習證據分級，說明 archive 前提。"
+    ],
+    "sources": [
+      "workflow.md",
+      "wiki-governance.md"
+    ]
+  },
+  {
+    "id": "wiki",
+    "title": "把經驗編譯成 Wiki 與 Skill",
+    "time": "65–80",
+    "minutes": 15,
+    "tag": "WikiSkill 論文 × 本專案",
+    "lead": "Raw 保存觀察，Wiki 保存可追溯知識，Skill 保存可重用程序。",
+    "goal": "說明論文機制與本專案採用範圍，拒絕無證據自動演進。",
+    "points": [
+      "論文第 4 頁圖 2：Raw／Wiki／Skill 三層；第 5–6 頁：執行、整理、提出候選、驗證與回退。",
+      "論文實驗在訓練 rollout 限制 Inference Agent 讀 wiki；validation score 嚴格高於最佳值才保留技能，否則回退技能，wiki 留存。這不是本專案的通用禁讀規則。",
+      "本專案以 redcap_research_wiki/index.md 導航，source_refs 回到來源；status 與 evidence_tier 是獨立欄位。",
+      "本專案 Runner 執行 active skill；Evolution Worker 只提一個候選；Water Spider 只判斷能否拉取，不改 wiki、skill 或 active state。",
+      "同根因至少兩次 + 正反證據；最多兩條代表 trace、一個已審 pattern／case、一個現有驗證命令；WIP = 1。",
+      "候選需 applicability、counterexample、stop_condition、validation_command、rejection_reason。通過唯讀驗證仍由人決定啟用；拒絕則保留舊版與拒絕理由。"
+    ],
+    "demo": "對照 PDF 第 4–6 頁與來源快照 wiki-skill.md。再看「status: review-required、evidence_tier: runtime」：有 runtime 證據但尚未人審，合理嗎？",
+    "prompt": "請讀 wiki index 與 governance，選一個 query。先產生有 critical_check 的 context packet，只回答「ACK 能否支持 apply」；回到來源並保留 claim boundary，不升級 confirmed。",
+    "output": "一份有來源與反例的待審知識，或有拒絕理由的候選 envelope。",
+    "stop": "不得把規則文字檢查 PASS 當成演進效能提升；論文 benchmark 成績不能外推 RedCap。",
+    "question": "Skill 更新失敗時，是否刪掉那次 wiki 學到的失敗原因？",
+    "answer": "不刪。保留歷史與拒絕原因；錯誤結論以修訂或 superseded 處理，避免重新提出相同錯誤候選。",
+    "notes": [
+      "前 4 分：介紹論文三層與四步，不講未在本專案量測的提升百分比。",
+      "中間 6 分：逐項對照論文與人審版限制，澄清 Water Spider 是本專案角色。",
+      "最後 5 分：講 context packet、status／evidence_tier 與資料夾導航。"
+    ],
+    "sources": [
+      "wiki-governance.md",
+      "wiki-context.md",
+      "wiki-skill.md",
+      "wiki-index.md"
+    ]
+  },
+  {
+    "id": "cycle",
+    "title": "定期更新與帶回自己的專案",
+    "time": "80–90",
+    "minutes": 10,
+    "tag": "週期作業 · 學員練習",
+    "lead": "固定時間檢查，只有證據成熟才更新。",
+    "goal": "完成一次候選拒絕判斷，知道下載包如何使用。",
+    "points": [
+      "建議節奏（本次未啟動排程）：每次任務後保留原始證據；每週先 lint，再獨立做一次 capture-triage；每月人審候選與回退紀錄。",
+      "每次 wiki invocation 只選一個 operation；不要在一次呼叫混做 lint、query、sync-docs。",
+      "結論型 query／decide／case-draft 先做 context packet 與 critical_check；純 lint 不需 packet。",
+      "沒有重複根因或缺負面反例 → 記錄 none／拒絕，既不建立也不啟用候選。",
+      "下載包先在新的練習目錄安裝；再用自己的 AGENTS.md、glossary、驗證命令替換專案接點。課程繁體中文，通用 skills 保留英文原指引。"
+    ],
+    "demo": "練習二（5 分鐘）：手上有兩次相同失敗，但沒有成功對照。能提候選嗎？請填拒絕理由和下一個最小取證動作，再對照答案。",
+    "prompt": "請按目前 wiki skill 的 Water Spider pull rule 判斷：同根因兩次失敗，但沒有正面證據。只回傳拒絕理由與下一步；不得建立或啟用候選。",
+    "output": "拒絕：缺少正面證據；下一步：取得同範圍成功 trace，確認差異確實能區分根因，再重新資格判定。",
+    "stop": "排程只是觸發檢查，不能代替人審；未確認效果不更新 active skill。",
+    "question": "時間到就一定要產生一個新 Skill 嗎？",
+    "answer": "不必。none 或明確拒絕是有效成果，能防止規則越長越難用。",
+    "notes": [
+      "前 2 分：介紹任務後／每週／每月節奏與責任人。",
+      "中間 5 分：學員作答候選資格並說明下一步。",
+      "最後 3 分：開下載包、示範安裝命令與回家作業：在自己的 repo 寫一條拒絕路徑驗收。"
+    ],
+    "sources": [
+      "wiki-skill.md",
+      "wiki-governance.md"
+    ]
+  }
+]

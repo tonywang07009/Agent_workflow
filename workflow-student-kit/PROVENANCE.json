@@ -1,0 +1,183 @@
+{
+  "date": "2026-09-09",
+  "source_project": "Red_cap_openairinterface5g_exp",
+  "scope": "11 workflow skills; project-specific MCP configuration and credentials excluded",
+  "adaptation": "OpenSpec copies add host-tool/path compatibility guidance; active source skills unchanged",
+  "files": [
+    {
+      "file": "skills/code-review/SKILL.md",
+      "source": ".agents/skills/code-review/SKILL.md",
+      "source_sha256": "b4401a94e4664729c68d1f0d5d508e5bde8dc77e312251e8390836df2a0948ac",
+      "package_sha256": "b4401a94e4664729c68d1f0d5d508e5bde8dc77e312251e8390836df2a0948ac",
+      "adapted": false
+    },
+    {
+      "file": "skills/code-review/agents/openai.yaml",
+      "source": ".agents/skills/code-review/agents/openai.yaml",
+      "source_sha256": "8229ca854e11dc8e6aef2131ee03f31fb1561cf905fab9ccc325180cf3331352",
+      "package_sha256": "8229ca854e11dc8e6aef2131ee03f31fb1561cf905fab9ccc325180cf3331352",
+      "adapted": false
+    },
+    {
+      "file": "skills/codebase-design/DEEPENING.md",
+      "source": ".agents/skills/codebase-design/DEEPENING.md",
+      "source_sha256": "125e6b77413ad2bc7cf7a772bc74336d580a50f9e797db2178ed133d62333d06",
+      "package_sha256": "125e6b77413ad2bc7cf7a772bc74336d580a50f9e797db2178ed133d62333d06",
+      "adapted": false
+    },
+    {
+      "file": "skills/codebase-design/DESIGN-IT-TWICE.md",
+      "source": ".agents/skills/codebase-design/DESIGN-IT-TWICE.md",
+      "source_sha256": "415003add000fa2f5a055bcc770046b305c3678300a1841569e76ad519b3b978",
+      "package_sha256": "415003add000fa2f5a055bcc770046b305c3678300a1841569e76ad519b3b978",
+      "adapted": false
+    },
+    {
+      "file": "skills/codebase-design/SKILL.md",
+      "source": ".agents/skills/codebase-design/SKILL.md",
+      "source_sha256": "a8d50abac5a4018f60e1d911d4b6f4e36454ca14d6c390c0695a578c7de65dad",
+      "package_sha256": "a8d50abac5a4018f60e1d911d4b6f4e36454ca14d6c390c0695a578c7de65dad",
+      "adapted": false
+    },
+    {
+      "file": "skills/codebase-design/agents/openai.yaml",
+      "source": ".agents/skills/codebase-design/agents/openai.yaml",
+      "source_sha256": "edebc9e4fcfe102114012575eaa9600b9b5fd08c311664f389c36e7bc717740f",
+      "package_sha256": "edebc9e4fcfe102114012575eaa9600b9b5fd08c311664f389c36e7bc717740f",
+      "adapted": false
+    },
+    {
+      "file": "skills/domain-modeling/ADR-FORMAT.md",
+      "source": ".agents/skills/domain-modeling/ADR-FORMAT.md",
+      "source_sha256": "f1f36cd3f8d3b6474ddd5855da4e233bfc4ae1a1c5024909ccf11871819a41b2",
+      "package_sha256": "f1f36cd3f8d3b6474ddd5855da4e233bfc4ae1a1c5024909ccf11871819a41b2",
+      "adapted": false
+    },
+    {
+      "file": "skills/domain-modeling/CONTEXT-FORMAT.md",
+      "source": ".agents/skills/domain-modeling/CONTEXT-FORMAT.md",
+      "source_sha256": "b8cc318f2a4285b530e908b6bc43901c3c5cd11100362636bbc4216639bef597",
+      "package_sha256": "b8cc318f2a4285b530e908b6bc43901c3c5cd11100362636bbc4216639bef597",
+      "adapted": false
+    },
+    {
+      "file": "skills/domain-modeling/SKILL.md",
+      "source": ".agents/skills/domain-modeling/SKILL.md",
+      "source_sha256": "e4b9834a3bd91108b76dce9a67bd654cfcc648d60bcc4a020ee9116696043fc5",
+      "package_sha256": "e4b9834a3bd91108b76dce9a67bd654cfcc648d60bcc4a020ee9116696043fc5",
+      "adapted": false
+    },
+    {
+      "file": "skills/domain-modeling/agents/openai.yaml",
+      "source": ".agents/skills/domain-modeling/agents/openai.yaml",
+      "source_sha256": "f6bf2aa996c6e6f53fdd0708e18a0d16a56aed8322cca59fedbe3c0d2c75f06b",
+      "package_sha256": "f6bf2aa996c6e6f53fdd0708e18a0d16a56aed8322cca59fedbe3c0d2c75f06b",
+      "adapted": false
+    },
+    {
+      "file": "skills/grill-with-docs/SKILL.md",
+      "source": ".agents/skills/grill-with-docs/SKILL.md",
+      "source_sha256": "0f598f43568da1ac414cb5836a8e8d436543015943fdeedec3632992ee145966",
+      "package_sha256": "0f598f43568da1ac414cb5836a8e8d436543015943fdeedec3632992ee145966",
+      "adapted": false
+    },
+    {
+      "file": "skills/grill-with-docs/agents/openai.yaml",
+      "source": ".agents/skills/grill-with-docs/agents/openai.yaml",
+      "source_sha256": "94cd0ab161fb468a836349f5ed482ba58ce8e709a05c57ce533d739dbd35cca9",
+      "package_sha256": "94cd0ab161fb468a836349f5ed482ba58ce8e709a05c57ce533d739dbd35cca9",
+      "adapted": false
+    },
+    {
+      "file": "skills/grill-with-docs/workflow.md",
+      "source": ".agents/skills/grill-with-docs/workflow.md",
+      "source_sha256": "781cb43ce571dc819e262659a0c2dbaa81f8e557638e241a7853a874e62c0011",
+      "package_sha256": "781cb43ce571dc819e262659a0c2dbaa81f8e557638e241a7853a874e62c0011",
+      "adapted": false
+    },
+    {
+      "file": "skills/improve-codebase-architecture/HTML-REPORT.md",
+      "source": ".agents/skills/improve-codebase-architecture/HTML-REPORT.md",
+      "source_sha256": "0b0936104158abeef7246ff6cbabefa4dc055f17589f2833f2d93001421910a1",
+      "package_sha256": "0b0936104158abeef7246ff6cbabefa4dc055f17589f2833f2d93001421910a1",
+      "adapted": false
+    },
+    {
+      "file": "skills/improve-codebase-architecture/SKILL.md",
+      "source": ".agents/skills/improve-codebase-architecture/SKILL.md",
+      "source_sha256": "081ca89e10836b77ed854a938e301c02583e0cb470fa71a54bb3c65adfc4bcfb",
+      "package_sha256": "081ca89e10836b77ed854a938e301c02583e0cb470fa71a54bb3c65adfc4bcfb",
+      "adapted": false
+    },
+    {
+      "file": "skills/improve-codebase-architecture/agents/openai.yaml",
+      "source": ".agents/skills/improve-codebase-architecture/agents/openai.yaml",
+      "source_sha256": "c8cb20f68ebf0edb4e497bc11ae5fcaa196004e661cd189015b04f4109ced7f1",
+      "package_sha256": "c8cb20f68ebf0edb4e497bc11ae5fcaa196004e661cd189015b04f4109ced7f1",
+      "adapted": false
+    },
+    {
+      "file": "skills/openspec-apply-change/SKILL.md",
+      "source": ".codex/skills/openspec-apply-change/SKILL.md",
+      "source_sha256": "f78de1f654815a50190c167be9953802ffcb776f74563d2187bc7770bc05c37a",
+      "package_sha256": "737d09257564ce65356afcecf5e8f56609a0becff4d9c3f348952235af396640",
+      "adapted": true
+    },
+    {
+      "file": "skills/openspec-archive-change/SKILL.md",
+      "source": ".codex/skills/openspec-archive-change/SKILL.md",
+      "source_sha256": "6ecf6d43b47cd9a6b8aefd78bbf8970b165ce3d801753a5d35c81003a0fe9ebc",
+      "package_sha256": "24a23e50b52696956348934df330d1fdf07654132d24848a9f26e6c13678d7f3",
+      "adapted": true
+    },
+    {
+      "file": "skills/openspec-explore/SKILL.md",
+      "source": ".codex/skills/openspec-explore/SKILL.md",
+      "source_sha256": "fb359559d93095c81a57760c7739ffbd6d618a03d1810503515f8ae2b5054cd0",
+      "package_sha256": "3627c4b9728636ab6df9b5c9e89158e6452fe97858b97c3de774d9b0b75f68c2",
+      "adapted": true
+    },
+    {
+      "file": "skills/openspec-propose/SKILL.md",
+      "source": ".codex/skills/openspec-propose/SKILL.md",
+      "source_sha256": "4656b82844debd05e88d11d6119e4958d319e705a181a5ed6c01a8f9a8b8afae",
+      "package_sha256": "ee001b8012f74c800f479083629fc54405cdbd3abaa2c539bd7ef7e38f4eccf6",
+      "adapted": true
+    },
+    {
+      "file": "skills/openspec-sync-specs/SKILL.md",
+      "source": ".codex/skills/openspec-sync-specs/SKILL.md",
+      "source_sha256": "9c74dad096467f982806ccf33e213f459890e0b79af1f69f6e9f1e790bb2fccf",
+      "package_sha256": "e3bfd2ecc79345d2f9103e247cd6536ddf71074cc5faf764cb4514613525f7e0",
+      "adapted": true
+    },
+    {
+      "file": "skills/tdd/SKILL.md",
+      "source": ".agents/skills/tdd/SKILL.md",
+      "source_sha256": "5e8fa450a9940585a8880812aed30243eee20c94c8ea1f5fae49b03d56839c02",
+      "package_sha256": "5e8fa450a9940585a8880812aed30243eee20c94c8ea1f5fae49b03d56839c02",
+      "adapted": false
+    },
+    {
+      "file": "skills/tdd/agents/openai.yaml",
+      "source": ".agents/skills/tdd/agents/openai.yaml",
+      "source_sha256": "ea6f01cf1b8c06a4b0f5b649d74b1b8ce8685e72af1b38d70d877693e092af0b",
+      "package_sha256": "ea6f01cf1b8c06a4b0f5b649d74b1b8ce8685e72af1b38d70d877693e092af0b",
+      "adapted": false
+    },
+    {
+      "file": "skills/tdd/mocking.md",
+      "source": ".agents/skills/tdd/mocking.md",
+      "source_sha256": "3ceb807fdf4a47d6a93d4d9a891e5ba6d362a6247bd08adc451feebfc17361ef",
+      "package_sha256": "3ceb807fdf4a47d6a93d4d9a891e5ba6d362a6247bd08adc451feebfc17361ef",
+      "adapted": false
+    },
+    {
+      "file": "skills/tdd/tests.md",
+      "source": ".agents/skills/tdd/tests.md",
+      "source_sha256": "859f9e592c188fda4fc7277dd180e4ce9c7a2e13f6efe1f6f29eccc9d28c106a",
+      "package_sha256": "859f9e592c188fda4fc7277dd180e4ce9c7a2e13f6efe1f6f29eccc9d28c106a",
+      "adapted": false
+    }
+  ]
+}
