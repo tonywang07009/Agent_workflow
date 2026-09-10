@@ -30,7 +30,7 @@ cannot be established reliably, clarify it without overwriting existing work.
 | Specification | `openspec-explore`, `openspec-propose` | CLI/schema-required implementation artifacts ready. Fill gaps in an existing change instead of creating a duplicate. |
 | Implementation | `openspec-apply-change`, `tdd` | Acceptance-driven RED, GREEN, affected regressions for behavior changes. Document why TDD is inapplicable for other work and run relevant checks. |
 | Review/validation | `code-review`, project validation commands | Address Standards and Spec findings; retain commands, results, limitations, and evidence paths. Reuse an applicable review already completed by apply. |
-| Sync/archive | `openspec-sync-specs`, `openspec-archive-change` | Required tasks, artifacts, tests, and review complete; delta specs reconciled (or no delta); archive exists and evidence remains reachable. |
+| Sync/archive | `openspec-sync-specs`, `openspec-archive-change` | Required tasks, artifacts, tests, and review complete; delta specs reconciled (or no delta); archive and verified `code-trace.md` exist and evidence remains reachable. |
 
 Load only needed stage references. The available `grill-with-docs/workflow.md`
 supplies shared architecture/evidence principles, not a requirement to run every
@@ -53,7 +53,10 @@ unperformed review.
 ## Change boundary
 
 Save original/archive paths, stage, evidence, current change, and next action before
-reporting completion. For example:
+reporting completion. Include the archived `code-trace.md` path in the evidence and
+report; its format and verification belong to openspec-archive-change's
+[code trace contract](../../openspec-archive-change/references/code-trace.md).
+For example:
 
 > Login is verified, reviewed, synced, and archived.  
 > Evidence: `<actual file>`; archive: `<actual directory>`.  

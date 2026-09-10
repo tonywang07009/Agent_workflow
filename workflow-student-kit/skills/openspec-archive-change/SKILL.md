@@ -98,7 +98,15 @@ Archive a completed change in the experimental workflow.
 
    If sync is selected or already authorized by workflow, invoke openspec-sync-specs for the selected change. Verify sync succeeds before archive; a failed sync stops the dependent archive. Perform locally unless delegation is available and authorized. Standalone explicit archive-without-sync is not workflow completion.
 
-6. **Perform the archive**
+6. **Prepare the code trace**
+
+   Create or refresh `code-trace.md` in the resolved `changeRoot` using
+   [the code trace contract](references/code-trace.md). This is a kit closeout
+   document, not an additional CLI/schema artifact. Use verified implementation,
+   requirements, and validation evidence; preserve existing useful trace content.
+   Prepare archive-local links for the actual destination selected below.
+
+7. **Perform the archive**
 
    Create an `archive` directory under `planningHome.changesDir` if it doesn't exist:
    ```bash
@@ -115,12 +123,18 @@ Archive a completed change in the experimental workflow.
    mv "<changeRoot>" "<planningHome.changesDir>/archive/YYYY-MM-DD-<name>"
    ```
 
-7. **Display summary**
+   After moving, verify `code-trace.md` and its local links at the actual archive
+   location. Repair stale paths before reporting completion. If the move succeeded
+   but verification failed, report the archive location and remaining issue;
+   resume verification there rather than moving the change again.
+
+8. **Display summary**
 
    Show archive completion summary including:
    - Change name
    - Schema that was used
    - Archive location
+   - Final `code-trace.md` location and any explicit trace evidence limitations
    - Whether specs were synced (if applicable)
    - Note about any warnings (incomplete artifacts/tasks)
 

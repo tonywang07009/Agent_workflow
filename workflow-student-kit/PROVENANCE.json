@@ -127,7 +127,7 @@
       "file": "skills/openspec-archive-change/SKILL.md",
       "source": ".codex/skills/openspec-archive-change/SKILL.md",
       "source_sha256": "6ecf6d43b47cd9a6b8aefd78bbf8970b165ce3d801753a5d35c81003a0fe9ebc",
-      "package_sha256": "c2a2b3d1bec3ec11a1f90c5c68c07bf9c36a5f1336bfabc7b0cbd125ba2a1345",
+      "package_sha256": "935a7c23a9780503cbca370fca3154f8e477f1bf65150fa796c5aa4406eb97b8",
       "adapted": true
     },
     {
@@ -234,5 +234,19 @@
     "browser_receipt": "course/workflow.visual-check.json",
     "visual_review": "docs/validation.md",
     "upstream_modified": false
+  },
+  "code_trace_closeout": {
+    "date": "2026-09-11",
+    "scope": "Per-change archived code trace instructions and example; archive owns evidence/path verification and workflow reports its location",
+    "files": [
+      "README.md",
+      "docs/skill-contracts.md",
+      "management/AGENTS.md",
+      "skills/workflow/references/delivery.md",
+      "skills/openspec-archive-change/SKILL.md",
+      "skills/openspec-archive-change/references/code-trace.md"
+    ],
+    "upstream_modified": false,
+    "tree_policy": "Generate from actual project paths and nesting; the user example specifies presentation only, not fixed categories or filenames. Mark omitted branches in scoped trees."
   }
 }

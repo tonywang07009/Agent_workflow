@@ -15,7 +15,7 @@ Design vocabulary belongs to codebase-design.
 | openspec-propose | Selected goal and acceptance | CLI/schema-resolved artifacts for apply |
 | openspec-apply-change | Change and context files | Implemented tasks with validation/review or bounded blocker |
 | openspec-sync-specs | Delta and canonical specs | Reconciled behavior; no duplicate tool route |
-| openspec-archive-change | Complete change and evidence | Actual archive; failed required sync blocks completion |
+| openspec-archive-change | Complete change and evidence | Actual archive with verified code-trace.md; failed required sync blocks completion |
 | tdd | Approved acceptance and public interface | RED/GREEN and affected regression evidence |
 | code-review | Fixed point, current work and requirements | Separate Standards/Spec findings |
 | llm-wiki | Project, operation and bounded sources | Knowledge update plus one evolution assessment |
@@ -38,6 +38,9 @@ Design vocabulary belongs to codebase-design.
 - The existing workflow state helper owns the optional project_context extension;
   legacy completion counts remain intact.
 - No router skill, speculative adapter or parallel implementation was added.
+- Archive owns the per-change code trace format and path verification; workflow
+  reports its archived location. The tree follows actual project paths and nesting,
+  marks omitted branches, and links canonical acceptance without duplicating it.
 
 ## Validation map
 

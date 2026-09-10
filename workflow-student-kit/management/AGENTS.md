@@ -48,6 +48,11 @@ Default: finish one whole change, including validation, sync and archive, then
 pause. Unresolved decisions and additional permissions remain stop conditions.
 A status-only request does not start implementation.
 
+Each completed change includes an archived `code-trace.md` navigation snapshot.
+Use openspec-archive-change's code trace contract for paths, file responsibilities,
+requirement-to-code/test mapping, and verified validation evidence. Report its
+final location at the change boundary; keep canonical acceptance in OpenSpec.
+
 Store requirements and acceptance in OpenSpec; keep raw evidence at the project's
 existing evidence location. Log long-running or side-effecting operations with
 command, cwd, effects, start/end, exit code, result and next step. Do not mark PASS

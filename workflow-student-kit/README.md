@@ -1,5 +1,13 @@
 # Agent workflow 教材
 
+每個 change 結束時，archive 技能會在該 change 內建立 `code-trace.md`，
+隨歸檔保存並在完成報告提供位置。內容包含主程式、測試、需求與專案管理文件的
+實際目錄樹、絕對／專案相對路徑、用途，以及需求 → 程式入口 → 測試與執行證據的對照。
+樹狀圖依專案真實檔名與層級產生，不套用固定分類；大型專案可展開相關分支並標明省略範圍。
+既有 OpenSpec 需求直接連結，不另複製 `requirements.md`；測試數量依實際驗收要求，
+不把未執行的測試標為通過。
+格式與檢查由 [code trace 指引](skills/openspec-archive-change/references/code-trace.md) 統一維護。
+
 直接開啟 `index.html`，可離線閱讀互動流程圖及 8 段、90 分鐘教學。
 Skill 與管理範本使用英文，Agent 仍依使用者語言說明。
 
