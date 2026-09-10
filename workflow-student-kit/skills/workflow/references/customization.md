@@ -41,12 +41,16 @@ Run helper tests from the bundle root with
 history. The following agent behaviors require practice-project execution;
 string matching or JSON validity cannot prove them:
 
-1. **New project:** scope login, cart depending on login, and checkout. Continue
+1. **New project:** begin with `$grill-with-docs` to confirm intent and scope for
+   login, cart depending on login, and checkout. Ask one unresolved decision at a
+   time and wait; do not set up the project, register the workflow, or begin specs
+   or implementation before requirements are confirmed. Continue
    from login specs through implementation, review, sync, and archive. Pause
    after login; do not implement cart in change mode.
 2. **Resume:** with cart tasks 2/4 complete, start a new conversation. First show
    goal, 1/3 changes, 2/4 tasks, validation status, and actual paths, then resume.
-   Multiple active workflows require selection; status-only never implements.
+   Do not repeat the interview or ask for reconfirmation. Multiple active workflows
+   require selection; status-only never interviews or implements.
 3. **Counting:** three complete workflows in A plus two in B trigger the offer
    at the fifth closeout. An individual change, interruption, or failed project
    acceptance does not count. Repeating complete for the same ID adds nothing.
@@ -59,6 +63,12 @@ string matching or JSON validity cannot prove them:
 6. **Recovery:** corrupt state, stale revisions, denied writes, and broken paths
    never reset counts or become success claims. Preserve recovery context and
    consult actual OpenSpec rather than treating the index as completion evidence.
+7. **New requirements on resume:** the user adds coupons to the approved cart.
+   Re-enter `$grill-with-docs` for coupon requirements and their impact, preserving
+   settled cart decisions. Wait for unresolved answers before updating scope or
+   implementing coupons, then continue delivery without another routine approval.
+8. **Mode only:** switching checkpoint mode changes the preference without an
+   interview or implementation.
 
 Automated tests validate the helper and installation. They do not establish full
 agent orchestration, five real completed projects, or improved Wiki/skill quality.

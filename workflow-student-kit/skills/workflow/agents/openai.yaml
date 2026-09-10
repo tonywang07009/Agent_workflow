@@ -1,4 +1,4 @@
 interface:
   display_name: "Workflow"
   short_description: "Resume delivery with progress summaries and change checkpoints"
-  default_prompt: "Use $workflow to start or resume this project, summarizing its goal, progress, next action, and OpenSpec paths first."
+  default_prompt: "Use $workflow to start with $grill-with-docs and confirm requirements before delivery; on resume, summarize progress and continue without reconfirmation unless I introduce new requirements."

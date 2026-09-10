@@ -2,8 +2,12 @@
 
 ## Scope and authority
 
-Establish goal, non-goals, observable acceptance, ownership, and stop conditions.
-Use `grill-with-docs` for one unresolved decision at a time; reuse settled answers.
+For a new workflow, complete the entry interview with `$grill-with-docs` before
+delivery: confirm intent, goal, non-goals, observable acceptance, ownership, and
+stop conditions, asking one unresolved decision at a time and waiting for answers.
+On resume, reuse confirmed requirements without another interview or confirmation.
+Re-enter `$grill-with-docs` only for user-introduced new requirements; clarify their
+scope and impact before updating scope or implementing them.
 Identify the scoped changes, their goals, dependencies, and OpenSpec locations.
 Include only user-confirmed scope, not every change found in the repository.
 Confirm scope changes before updating the index and affected OpenSpec artifacts.
@@ -26,7 +30,7 @@ cannot be established reliably, clarify it without overwriting existing work.
 
 | Stage | Skills when needed | Exit condition and handoff |
 |---|---|---|
-| Intent/design | `grill-with-docs`; `domain-modeling` for terminology; `codebase-design` for interfaces | Clear goal, acceptance, owner, interface, dependencies. Reuse adequate design; use `improve-codebase-architecture` only for concrete architecture friction. |
+| Intent/design | Reuse the entry interview; `grill-with-docs` for user-introduced new requirements; `domain-modeling` for terminology; `codebase-design` for interfaces | Clear goal, acceptance, owner, interface, dependencies. Do not repeat confirmation on resume or at each change. Reuse adequate design; use `improve-codebase-architecture` only for concrete architecture friction. |
 | Specification | `openspec-explore`, `openspec-propose` | CLI/schema-required implementation artifacts ready. Fill gaps in an existing change instead of creating a duplicate. |
 | Implementation | `openspec-apply-change`, `tdd` | Acceptance-driven RED, GREEN, affected regressions for behavior changes. Document why TDD is inapplicable for other work and run relevant checks. |
 | Review/validation | `code-review`, project validation commands | Address Standards and Spec findings; retain commands, results, limitations, and evidence paths. Reuse an applicable review already completed by apply. |

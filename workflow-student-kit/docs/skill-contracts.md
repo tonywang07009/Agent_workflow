@@ -6,7 +6,7 @@ Design vocabulary belongs to codebase-design.
 
 | Skill | Input interface | Output / next owner |
 |---|---|---|
-| workflow | Goal/resume and project context | Verified summary, change checkpoint, closeout and curation offer |
+| workflow | Goal/resume and project context | New-workflow grill-with-docs interview before delivery; resume without reconfirmation unless the user adds requirements; verified summary, change checkpoint, closeout and curation offer |
 | grill-with-docs | Unresolved decision and evidence | Goal/acceptance/owner/stop decision, returning to caller |
 | codebase-design | Scoped interface question | Depth, seam, adapter, leverage and locality vocabulary |
 | domain-modeling | Domain term or durable decision | Authorized existing glossary/ADR update |

@@ -1,8 +1,8 @@
 {
-  "date": "2026-09-09",
+  "date": "2026-09-11",
   "source_project": "Red_cap_openairinterface5g_exp",
   "scope": "11 imported skills plus original workflow, llm-wiki and skill-evolution; generic project management resources and offline course",
-  "adaptation": "Package copies adapted to shared project context and responsibility contracts; original source hashes retained; upstream active skills unchanged",
+  "adaptation": "Package copies adapted to shared project context and responsibility contracts; workflow now begins new work with grill-with-docs, resumes without reconfirmation, and re-enters clarification for user-introduced new requirements; original source hashes retained; upstream active skills unchanged",
   "files": [
     {
       "file": "skills/code-review/SKILL.md",
