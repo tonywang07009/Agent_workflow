@@ -7,6 +7,7 @@
 | Invocation, resume summary, change checkpoint | SKILL.md | delivery.md handoffs and examples |
 | Stage order, completion evidence, downstream skill | references/delivery.md | Actual available skills; do not copy their procedures |
 | Knowledge closeout | references/knowledge.md | Target project's Wiki governance, not teaching snapshots |
+| Tool selection and project mapping | references/project-context.md; installed docs/tools.md | Active OpenSpec project spec/toolbox; source templates under management/ |
 | Five-workflow threshold | scripts/state.py SWITCH_AFTER | SKILL.md, state.md, acceptance examples |
 | State path, fields, migration | scripts/state.py, references/state.md | All installed copies share one protocol; migrate explicitly, never reset old data |
 | Name, UI text, invocation example | SKILL.md frontmatter, agents/openai.yaml | Folder name and `$workflow` references |
@@ -28,8 +29,9 @@ $workflow Pause after each complete change again.
 ```
 
 Delivery requires OpenSpec CLI and the relevant bundled skills. The installer
-does not install CLI/MCP dependencies or configure project AGENTS.md. The target
-project supplies any Wiki skill. Instructions are English; user-facing replies
+includes llm-wiki, skill-evolution, and docs/management in .agents/workflow-kit;
+it does not install CLI/MCP dependencies or configure project AGENTS.md.
+Instructions are English; user-facing replies
 follow the user's language.
 
 ## Acceptance scenarios

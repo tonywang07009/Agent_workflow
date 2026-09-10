@@ -1,5 +1,12 @@
 # 課程來源與驗證範圍
 
+現行通用版：工具選擇見 `../docs/tools.md`，管理範本見 `../management/`，
+技能責任見 `../docs/skill-contracts.md`。新增 llm-wiki 與 skill-evolution
+由本教材依使用者決策撰寫，不是外部桌面程式的安裝副本。
+現行 workflow.json／workflow.html 為本教材離線檢視器，由 build.py 產生。
+Archify 的舊截圖、健康檢查與下列原始專案資料均保留為歷史紀錄，
+不代表通用版今日的路由或工具可用性；course/sources/ 原快照不改寫。
+
 查核日期：2026-09-09。相對路徑從講師的 RedCap experimental 專案根目錄解析。`sources/` 是只讀教學快照，内部連結與原始碼定位仍以原專案為準，並非獨立可執行的 wiki。
 
 ## 來源矩陣

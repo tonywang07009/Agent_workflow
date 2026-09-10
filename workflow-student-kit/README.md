@@ -1,75 +1,104 @@
-# Agent workflow 說明
+# Agent workflow 教材
 
-## 第一步
-- 請先閱讀 `index.html`的內容 。
-    - windows  mac os 就直接點擊該檔案 , linux ```bash firefox index.html ```
-    - 點教學卡可查看講解、提示詞、停止條件、
-    - 練習答案與講者節奏,這邊可以請您指派 Agent 擔任您的導師。
-    - 無須 web server；課程與圖可離線使用。 
+直接開啟 `index.html`，可離線閱讀互動流程圖及 8 段、90 分鐘教學。
+Skill 與管理範本使用英文，Agent 仍依使用者語言說明。
 
-## 第二步 檔案內容說明
+## 檔案配置
 
 | 位置 | 用途 |
 |---|---|
-| `index.html` | 互動式架構說明網站 |
-| `skills/` | 12 個 skills：`workflow` 統一入口，以及 11 個通用 skills 與附屬參考文件 |
-| `skills/workflow/SKILL.md` | 英文流程入口：續接摘要、以 change 為停點、跨專案累計與結案詢問 |
-| `skills/workflow/references/customization.md` | 自訂位置對照、使用範例與行為驗收情境 |
-| `course/workflow.html` | Archify 產生的互動架構圖 |
-| `course/workflow.json` | 可再次編輯、驗證的 Archify 內容的檔案 |
-| `course/lesson.json` | 8 張教學卡的資料，包含講解、提示詞、停止條件、練習答案、講者節奏與來源引用；合計 90 分鐘 |
-| `course/speaker-notes.zh-TW.md` | 90 分鐘、8 段課程的講者教案，對應 `course/lesson.json` 的 8 張教學卡；可請 Agent 依此擔任導師 |
-| `course/weekly-runbook.zh-TW.md` | Wiki 與 Skill 在每次任務、每週、每月的維護流程，供維護者使用；不是網頁執行內容，也不會自行啟動排程 |
-| `course/source-index.zh-TW.md` | 說明來源矩陣、論文、工具、Wiki 快照與驗證限制，協助理解 `course/sources/` 的來源與可信範圍 |
-| `course/sources/workflow.md` | 主工作流與 OpenSpec 文件責任；被第 1、2、3、4、6 張課程卡引用 |
-| `course/sources/project-toolbox.md` | MCP、CLI、查詢與測試工具的路由及用途；被第 1、5 張課程卡引用 |
-| `course/sources/wiki-context.md` | Context packet（上下文資料包）、問題範圍與 claim boundary（結論可支持的範圍）；被第 3、7 張課程卡引用 |
-| `course/sources/wiki-governance.md` | Wiki metadata（中繼資料）、證據層級、人審與 capture（知識留存）流程；被第 6、7、8 張課程卡引用 |
-| `course/sources/wiki-index.md` | Wiki 導航與知識分類入口；被第 7 張課程卡引用 |
-| `course/sources/wiki-skill.md` | Wiki Skill 的 query（查詢）、ingest（來源匯入）、演進與候選規則；被第 7、8 張課程卡引用 |
-| `course/ARCHIFY-THIRD-PARTY-NOTICES.md` | `course/workflow.html` 使用的第三方資產授權聲明，屬於授權文件 |
-| `install.py` | 將 skills 安裝到指定練習 repo 的 `.agents/skills`；衝突時拒絕覆蓋 |
-| `verify.py` | 檢查教材資料、檔案完整性與安裝拒絕路徑 |
+| `index.html` | 三段系統流程與互動課程卡 |
+| `course/workflow.json`、`workflow.template.html` | 現行流程資料與離線檢視器樣板 |
+| `course/lesson.json` | 8 張課程卡、練習與目前實作引用 |
+| `course/build.py` | 從資料重建流程圖與首頁課程資料 |
+| `course/speaker-notes.zh-TW.md` | 與課程卡對應的講者教案 |
+| `course/weekly-runbook.zh-TW.md` | 維護節奏與品質演進 |
+| `course/sources/` | 原 RedCap 歷史唯讀快照，不是現行操作規則 |
+| `docs/tools.md` | 工具能力、情境、限制、檢查與安裝來源 |
+| `docs/skill-contracts.md` | 14 個技能的責任、架構銜接與驗收對照 |
+| `management/AGENTS.md` | 學員專案規則範本 |
+| `management/openspec-project/` | 各專案工具路由 spec 與 Toolbox 範本 |
+| `skills/` | 14 個技能，含 workflow、llm-wiki、skill-evolution |
+| `install.py` | 安裝技能及 docs／management 資源，衝突時拒絕 |
+| `verify.py`、`tests/` | 教材一致性、安裝、狀態及候選檢查 |
 
-課程卡編號依 `course/lesson.json` 的排列順序。`course/sources/` 是唯讀教學快照，內部連結與原始碼定位仍以原專案為準，並非獨立可執行的 Wiki；工具健康快照也不代表當下可用狀態，詳細限制請參閱 `course/source-index.zh-TW.md`。
+根目錄 AGENTS.md 管理本教材。原 spec.md 與 redcap_toolbox.md
+已通用化到 management/openspec-project/；本教材不建立實際 openspec/ 或 wiki/。
 
-## 第三步 安裝該專案的skill
+## 安裝到練習專案
 
 ```bash
-python3 verify.py
+python3 -B verify.py
 python3 install.py /absolute/path/to/your-practice-repo
 ```
 
-- 安裝完成後，在目標練習專案啟用：
+Windows 若無 python3，使用 python。目標目錄須已存在。安裝產物：
+
+```text
+<target>/.agents/skills/<14 skills>/
+<target>/.agents/workflow-kit/docs/
+<target>/.agents/workflow-kit/management/
+```
+
+不覆蓋同名 skills 或既有 workflow-kit 資源，不修改目標 AGENTS.md、
+OpenSpec／MCP 設定或個人進度。既有安裝先比較差異並選擇更新範圍；
+不要以刪除既有技能作為預設升級方式。
+
+## 啟動與專案接入
+
+依工具指南準備適用工具及 OpenSpec CLI。各工具的入口形式不同；
+安裝連結不代表已健康或每個任務都需要。
 
 ```text
 $workflow
-請啟動或接續目前專案，先簡要說明實作目標、進度、下一步與 OpenSpec 路徑。
+請啟動或接續目前專案，先說明目標、進度、下一步與 OpenSpec 路徑。
 ```
 
-若目前環境尚未辨識新安裝的 skill，可明確請 Agent 讀取
-`.agents/skills/workflow/SKILL.md` 並依其指引執行。
+若尚未辨識技能，請 Agent 讀 `.agents/skills/workflow/SKILL.md`。
+首次接入時依問題選工具，使用安裝資源中的 management 範本，
+把實際專案契約放在對應 OpenSpec，例如：
 
-初始模式會在每個完整 change 結束後停下；change 內接續規格、實作、
-驗證與同步封存。整個大專案納入的 changes 全部完成才累計一次 workflow。
-同一台電腦的同一使用者跨專案累計滿 5 次後，詢問是否改為自動接續 changes；
-拒絕後不再主動重問，隨時可要求切換或切回。每個完整 workflow 結案後，
-另行詢問是否進行 Skill／Wiki 整理。
+```text
+<project>/openspec/projects/<project-key>/spec.md
+<project>/openspec/projects/<project-key>/toolbox.md
+```
 
-共用紀錄預設存在使用者家目錄的 `.workflow/state.json`，不放進教材或練習 repo。
-安裝不建立該紀錄；實際啟用後需要保存時，若環境限制家目錄寫入，Agent 會走
-環境授權流程。OpenSpec CLI 與目標專案設定須可用；Wiki 則依目標專案另行提供。
-Skill 指引使用英文，Agent 仍依使用者語言回報。
+projects/ 是本教材分組慣例，不是 OpenSpec CLI schema。沿用現有設定，
+change／artifact 路徑仍由 CLI 解析；有多個專案時先選擇。
+Agent 在既有授權內接入，不直接覆蓋整份 AGENTS.md。
 
-維護者驗證：`python3 -B -m unittest discover -s tests`；紀錄工具測試使用暫存目錄。
-Windows 若無 `python3` 指令，可使用 `python`。
+## 推進與品質演進
 
-## 備註
+- 完整 change 結束後停下；其內接續規格、實作、驗證、同步封存。
+- 所有 changes 與整體驗收完成才計一次 workflow。
+- 同一本機使用者跨專案滿 5 次詢問是否自動接續；拒絕後不再主動重問。
+  共用索引位於使用者家目錄的 `.workflow/state.json`，隨時可要求切換模式。
+- 完整結案後詢問 Wiki 整理；每次 Wiki 更新後自動評估 Skill 改進。
+- 已確認路徑、連結與命令筆誤直接修復驗證；品質候選需重複根因兩次、
+  成功／失敗證據及可執行比較。
+- 候選隔離在專案 Wiki 的 evolution/。同一版本通過兩個不同任務，
+  至少一個未用於撰寫候選；版本改變重驗。正確性／完整性優先。
+- 穩定後提出更新建議，由使用者決定指定版本與本機／共用目標。
+  拒絕與回退結果保留在 Wiki；回饋不遞迴觸發評估。
 
-- 目標專案的路徑必須存在
+安裝不建立個人狀態或 Wiki；實際家目錄寫入依環境權限處理。
+llm-wiki 是本套件本地技能，不需要外部 LLM Wiki 桌面程式才能操作。
 
-- 若目標專案中有同名 skill 則安裝會先停止,以確保不覆蓋既原始專案內的skill
+## 維護與驗證
 
-- 本安裝包 __不__ 修改目標專案的 AGENTS.md、OpenSpec 設定或 MCP 設定, 請您發揮想像力與您的Agent 討論
+```bash
+python3 -B course/build.py
+python3 -B -m unittest discover -s tests
+python3 -B verify.py
+```
 
-- MCP 請參閱附錄的 `tool_refer.txt` 內的網址,並自行安裝
+修改後同步 PROVENANCE.json 與 SHA256SUMS。
+有 Chromium／Edge 時可執行：
+
+```text
+node tests/test_course_browser.mjs <browser-executable> <screenshot-directory>
+```
+
+測試使用暫存專案，不寫個人進度或啟用共用 Skill。候選檢查工具只驗證紀錄；
+真實 Agent 品質仍須實跑案例並判讀證據。
+舊 Archify 截圖及檢查 JSON 是歷史產物，現行流程使用本教材離線檢視器。

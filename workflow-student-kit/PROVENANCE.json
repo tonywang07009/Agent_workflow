@@ -1,15 +1,15 @@
 {
   "date": "2026-09-09",
   "source_project": "Red_cap_openairinterface5g_exp",
-  "scope": "11 imported workflow skills plus one original workflow entrypoint; project-specific MCP configuration and credentials excluded",
-  "adaptation": "OpenSpec copies add host-tool/path compatibility guidance; active source skills unchanged",
+  "scope": "11 imported skills plus original workflow, llm-wiki and skill-evolution; generic project management resources and offline course",
+  "adaptation": "Package copies adapted to shared project context and responsibility contracts; original source hashes retained; upstream active skills unchanged",
   "files": [
     {
       "file": "skills/code-review/SKILL.md",
       "source": ".agents/skills/code-review/SKILL.md",
       "source_sha256": "b4401a94e4664729c68d1f0d5d508e5bde8dc77e312251e8390836df2a0948ac",
-      "package_sha256": "b4401a94e4664729c68d1f0d5d508e5bde8dc77e312251e8390836df2a0948ac",
-      "adapted": false
+      "package_sha256": "c0207ec66406db512b388fe5a5ca0ff1eaa14db74d0f7b5ff1b628345cebfeab",
+      "adapted": true
     },
     {
       "file": "skills/code-review/agents/openai.yaml",
@@ -36,8 +36,8 @@
       "file": "skills/codebase-design/SKILL.md",
       "source": ".agents/skills/codebase-design/SKILL.md",
       "source_sha256": "a8d50abac5a4018f60e1d911d4b6f4e36454ca14d6c390c0695a578c7de65dad",
-      "package_sha256": "a8d50abac5a4018f60e1d911d4b6f4e36454ca14d6c390c0695a578c7de65dad",
-      "adapted": false
+      "package_sha256": "4686eef2c9c0ec3956ee6d80dce4518cc8a869c06d08d718d0d740205296c67d",
+      "adapted": true
     },
     {
       "file": "skills/codebase-design/agents/openai.yaml",
@@ -64,8 +64,8 @@
       "file": "skills/domain-modeling/SKILL.md",
       "source": ".agents/skills/domain-modeling/SKILL.md",
       "source_sha256": "e4b9834a3bd91108b76dce9a67bd654cfcc648d60bcc4a020ee9116696043fc5",
-      "package_sha256": "e4b9834a3bd91108b76dce9a67bd654cfcc648d60bcc4a020ee9116696043fc5",
-      "adapted": false
+      "package_sha256": "e45b7a6567fa1f22b2291450b03ad66880f982ea54e59fe85bf254680edcad2f",
+      "adapted": true
     },
     {
       "file": "skills/domain-modeling/agents/openai.yaml",
@@ -78,8 +78,8 @@
       "file": "skills/grill-with-docs/SKILL.md",
       "source": ".agents/skills/grill-with-docs/SKILL.md",
       "source_sha256": "0f598f43568da1ac414cb5836a8e8d436543015943fdeedec3632992ee145966",
-      "package_sha256": "0f598f43568da1ac414cb5836a8e8d436543015943fdeedec3632992ee145966",
-      "adapted": false
+      "package_sha256": "973dc840781ed3f4152532b174b76f3f04061245bcbbc71bb34c8b0943d7d4bc",
+      "adapted": true
     },
     {
       "file": "skills/grill-with-docs/agents/openai.yaml",
@@ -92,22 +92,22 @@
       "file": "skills/grill-with-docs/workflow.md",
       "source": ".agents/skills/grill-with-docs/workflow.md",
       "source_sha256": "781cb43ce571dc819e262659a0c2dbaa81f8e557638e241a7853a874e62c0011",
-      "package_sha256": "781cb43ce571dc819e262659a0c2dbaa81f8e557638e241a7853a874e62c0011",
-      "adapted": false
+      "package_sha256": "fbe922721130437e111fc44ebd2e2a69e49a96a68baa0cdf146142414c264553",
+      "adapted": true
     },
     {
       "file": "skills/improve-codebase-architecture/HTML-REPORT.md",
       "source": ".agents/skills/improve-codebase-architecture/HTML-REPORT.md",
       "source_sha256": "0b0936104158abeef7246ff6cbabefa4dc055f17589f2833f2d93001421910a1",
-      "package_sha256": "0b0936104158abeef7246ff6cbabefa4dc055f17589f2833f2d93001421910a1",
-      "adapted": false
+      "package_sha256": "2201d3261e6b11205193b0ff5e4a438a58be396a2d9bcdc4aa8e86dd5b7bd690",
+      "adapted": true
     },
     {
       "file": "skills/improve-codebase-architecture/SKILL.md",
       "source": ".agents/skills/improve-codebase-architecture/SKILL.md",
       "source_sha256": "081ca89e10836b77ed854a938e301c02583e0cb470fa71a54bb3c65adfc4bcfb",
-      "package_sha256": "081ca89e10836b77ed854a938e301c02583e0cb470fa71a54bb3c65adfc4bcfb",
-      "adapted": false
+      "package_sha256": "2fd76b84501d4a2a2781d414b70ee40b4cea3735853c1ee26106c8337b6d5562",
+      "adapted": true
     },
     {
       "file": "skills/improve-codebase-architecture/agents/openai.yaml",
@@ -120,43 +120,43 @@
       "file": "skills/openspec-apply-change/SKILL.md",
       "source": ".codex/skills/openspec-apply-change/SKILL.md",
       "source_sha256": "f78de1f654815a50190c167be9953802ffcb776f74563d2187bc7770bc05c37a",
-      "package_sha256": "737d09257564ce65356afcecf5e8f56609a0becff4d9c3f348952235af396640",
+      "package_sha256": "34e7464a9431089df0a013442df7482b19b5020a4b2f0406c3d32a25b964932d",
       "adapted": true
     },
     {
       "file": "skills/openspec-archive-change/SKILL.md",
       "source": ".codex/skills/openspec-archive-change/SKILL.md",
       "source_sha256": "6ecf6d43b47cd9a6b8aefd78bbf8970b165ce3d801753a5d35c81003a0fe9ebc",
-      "package_sha256": "24a23e50b52696956348934df330d1fdf07654132d24848a9f26e6c13678d7f3",
+      "package_sha256": "c2a2b3d1bec3ec11a1f90c5c68c07bf9c36a5f1336bfabc7b0cbd125ba2a1345",
       "adapted": true
     },
     {
       "file": "skills/openspec-explore/SKILL.md",
       "source": ".codex/skills/openspec-explore/SKILL.md",
       "source_sha256": "fb359559d93095c81a57760c7739ffbd6d618a03d1810503515f8ae2b5054cd0",
-      "package_sha256": "3627c4b9728636ab6df9b5c9e89158e6452fe97858b97c3de774d9b0b75f68c2",
+      "package_sha256": "8e7c62fbfa178cfef16d6c1385575be334cb02de1e2b162c94ece1c6e434a37e",
       "adapted": true
     },
     {
       "file": "skills/openspec-propose/SKILL.md",
       "source": ".codex/skills/openspec-propose/SKILL.md",
       "source_sha256": "4656b82844debd05e88d11d6119e4958d319e705a181a5ed6c01a8f9a8b8afae",
-      "package_sha256": "ee001b8012f74c800f479083629fc54405cdbd3abaa2c539bd7ef7e38f4eccf6",
+      "package_sha256": "b541ba02c231bfbe4fa120b7fbb3caeb816f01ccbccddb2ff1d89b1bc7198017",
       "adapted": true
     },
     {
       "file": "skills/openspec-sync-specs/SKILL.md",
       "source": ".codex/skills/openspec-sync-specs/SKILL.md",
       "source_sha256": "9c74dad096467f982806ccf33e213f459890e0b79af1f69f6e9f1e790bb2fccf",
-      "package_sha256": "e3bfd2ecc79345d2f9103e247cd6536ddf71074cc5faf764cb4514613525f7e0",
+      "package_sha256": "254ffb68e2ca598720377e8468852499bf4555a8334277b4b6913d9d295c003e",
       "adapted": true
     },
     {
       "file": "skills/tdd/SKILL.md",
       "source": ".agents/skills/tdd/SKILL.md",
       "source_sha256": "5e8fa450a9940585a8880812aed30243eee20c94c8ea1f5fae49b03d56839c02",
-      "package_sha256": "5e8fa450a9940585a8880812aed30243eee20c94c8ea1f5fae49b03d56839c02",
-      "adapted": false
+      "package_sha256": "70f08060f681dddc9a6fd3a5ec3a9f151ff947c6e4a0fe85154f57de315d139e",
+      "adapted": true
     },
     {
       "file": "skills/tdd/agents/openai.yaml",
@@ -195,5 +195,32 @@
       "skills/workflow/scripts/state.py",
       "tests/test_workflow_state.py"
     ]
+  },
+  "generalization": {
+    "date": "2026-09-10",
+    "authority": "User-approved teaching-kit changes; management replaces the proposed templates directory",
+    "scope": [
+      "AGENTS.md",
+      "docs/",
+      "management/",
+      "skills/llm-wiki/",
+      "skills/skill-evolution/",
+      "skills/workflow/references/project-context.md",
+      "course/",
+      "index.html",
+      "install.py",
+      "tests/",
+      "verify.py"
+    ],
+    "migration": {
+      "spec.md": "management/openspec-project/spec.md",
+      "redcap_toolbox.md": [
+        "management/openspec-project/toolbox.md",
+        "docs/tools.md"
+      ]
+    },
+    "policy": "Wiki updates trigger bounded assessment; routine verified repairs are direct; quality candidates remain project-local until stable trials and explicit target/version activation",
+    "validation": "docs/validation.md",
+    "source_note": "Historical course/sources snapshots preserved; current viewer is original teaching-kit code, not an Archify-generated artifact"
   }
 }

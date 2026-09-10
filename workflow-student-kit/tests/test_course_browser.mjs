@@ -38,6 +38,7 @@ try {
  await send('Page.navigate',{url:pathToFileURL(path.join(root,'index.html')).href});
  for(let i=0;i<60;i++){if(await js("document.querySelectorAll('[data-lesson]').length===8"))break;await new Promise(r=>setTimeout(r,100));}
  assert.equal(await js("document.querySelectorAll('[data-lesson]').length"),8);
+ assert.ok(await js('document.documentElement.scrollWidth<=window.innerWidth'),'Index horizontal overflow');
  await js("document.getElementById('start').click()");assert.equal(await js("document.querySelector('dialog').open"),true);
  await js("document.getElementById('next').click()");assert.match(await js("document.getElementById('lesson-title').textContent"),/需求/);
  await js("document.getElementById('close').click()");assert.equal(await js("document.querySelector('dialog').open"),false);
@@ -48,6 +49,9 @@ try {
   await js("document.getElementById('close').click()");
  }
  await writeFile(path.join(output,'index-desktop.png'),Buffer.from((await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false})).data,'base64'));
+ await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
+ assert.ok(await js('document.documentElement.scrollWidth<=window.innerWidth'),'Mobile index horizontal overflow');
+ await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1100,deviceScaleFactor:1,mobile:false});
  await send('Page.navigate',{url:pathToFileURL(path.join(root,'course/workflow.html')).href});
  for(let i=0;i<60;i++){if(await js("document.querySelectorAll('.node').length===10"))break;await new Promise(r=>setTimeout(r,100));}
  assert.equal(await js("document.querySelectorAll('.node').length"),10);

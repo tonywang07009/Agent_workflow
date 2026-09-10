@@ -1,22 +1,25 @@
-# MCP 工具 
+# 工具與架構參考
 
-	- ponytail MCP 
-	   https://github.com/DietrichGebert/ponytail
+完整介紹與選用情境：docs/tools.md
+專案工具組合範本：management/openspec-project/toolbox.md
+專案路由規格範本：management/openspec-project/spec.md
 
-	- RTK MCP
-	   https://github.com/rtk-ai/rtk
+以下工具並非全部都是 MCP；Agent 應先確認專案需求、實際安裝方式與可用能力。
 
-	- Openspce MCP
-	   https://github.com/Fission-AI/OpenSpec
+- Ponytail：Skills／Plugin 與 MCP 整合選項
+  https://github.com/DietrichGebert/ponytail
+- RTK：CLI 輸出壓縮代理
+  https://github.com/rtk-ai/rtk
+- OpenSpec：規格驅動開發 CLI 與工作流程
+  https://github.com/Fission-AI/OpenSpec
+- SymDex：程式碼索引與符號查詢，CLI／MCP
+  https://github.com/husnainpk/SymDex
 
-	- Symdex MCP
-	   https://github.com/husnainpk/SymDex
+# 知識與 Skill 改善參考
 
+- LLM Wiki：外部桌面應用；本教材的 skills/llm-wiki 是獨立的 Agent 流程
+  https://github.com/nashsu/llm_wiki
+- WikiSkill 論文：知識回饋與 Skill 改善方法參考
+  https://arxiv.org/html/2608.27454
 
-# 協助架構
-
-	- LLM Wiki
-	   https://github.com/nashsu/llm_wiki
-
-	- Google evolution Skill
-	  https://arxiv.org/html/2608.27454
+教材採用的兩次事件、兩項任務與使用者確認門檻屬於教學政策，並非論文的強制規定。
