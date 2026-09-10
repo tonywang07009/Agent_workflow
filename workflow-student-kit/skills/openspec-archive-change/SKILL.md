@@ -9,6 +9,15 @@ metadata:
   generatedBy: "1.4.1"
 ---
 
+## Project context
+
+Use applicable AGENTS.md to resolve the selected project's OpenSpec spec/toolbox.
+For missing or ambiguous mappings, read the available workflow skill's
+[project-context guide](../workflow/references/project-context.md).
+This resolves tools and evidence only; it does not start the workflow or repeat
+settled decisions. Follow this skill's own scope after context is resolved.
+
+
 ## Host compatibility
 
 Use the host's available question and progress tools; `AskUserQuestion`,
@@ -87,7 +96,7 @@ Archive a completed change in the experimental workflow.
    - If changes needed: "Sync now (recommended)", "Archive without syncing"
    - If already synced: "Archive now", "Sync anyway", "Cancel"
 
-   If user chooses sync, use Task tool (subagent_type: "general-purpose", prompt: "Use Skill tool to invoke openspec-sync-specs for change '<name>'. Delta spec analysis: <include the analyzed delta spec summary>"). Proceed to archive regardless of choice.
+   If sync is selected or already authorized by workflow, invoke openspec-sync-specs for the selected change. Verify sync succeeds before archive; a failed sync stops the dependent archive. Perform locally unless delegation is available and authorized. Standalone explicit archive-without-sync is not workflow completion.
 
 6. **Perform the archive**
 

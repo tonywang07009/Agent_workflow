@@ -3,6 +3,15 @@ name: code-review
 description: Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes — Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/PRD asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to "review since X".
 ---
 
+## Project context
+
+Use applicable AGENTS.md to resolve the selected project's OpenSpec spec/toolbox.
+For missing or ambiguous mappings, read the available workflow skill's
+[project-context guide](../workflow/references/project-context.md).
+This resolves tools and evidence only; it does not start the workflow or repeat
+settled decisions. Follow this skill's own scope after context is resolved.
+
+
 Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 
 - **Standards** — does the code conform to this repo's documented coding standards?

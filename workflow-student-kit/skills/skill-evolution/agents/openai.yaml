@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Evolution"
+  short_description: "Validate local skill candidates before proposing shared updates"
+  default_prompt: "Use $skill-evolution with the selected project's OpenSpec context and bounded evidence."

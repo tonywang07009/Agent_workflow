@@ -4,6 +4,15 @@ description: Sharpen a repository-grounded plan or design through a one-question
 disable-model-invocation: true
 ---
 
+## Project context
+
+Use applicable AGENTS.md to resolve the selected project's OpenSpec spec/toolbox.
+For missing or ambiguous mappings, read the available workflow skill's
+[project-context guide](../workflow/references/project-context.md).
+This resolves tools and evidence only; it does not start the workflow or repeat
+settled decisions. Follow this skill's own scope after context is resolved.
+
+
 # Grill With Docs
 
 For a cross-project workflow overview, read [workflow.md](workflow.md). Skip

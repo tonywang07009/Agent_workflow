@@ -8,7 +8,9 @@ Identify the scoped changes, their goals, dependencies, and OpenSpec locations.
 Include only user-confirmed scope, not every change found in the repository.
 Confirm scope changes before updating the index and affected OpenSpec artifacts.
 
-Project `AGENTS.md` owns constraints and tool routing. OpenSpec owns requirements,
+Project `AGENTS.md` owns constraints and context selection; the selected OpenSpec
+project toolbox owns concrete tool routing. Read [project-context.md](project-context.md)
+for setup or ambiguous mappings. OpenSpec owns requirements,
 design, tasks, and acceptance. The user index owns navigation, resume hints, and
 preferences. Do not copy entire skills into specifications.
 

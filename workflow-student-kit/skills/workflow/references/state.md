@@ -79,6 +79,23 @@ the CLI after creation. Project and OpenSpec roots must already exist.
 Keep the returned UUID id for every resume. Do not register again on a new turn.
 The helper rejects a change path already assigned to another workflow.
 
+Newly configured projects also include project_context in record:
+
+```json
+{
+  "project_context": {
+    "spec_path": "/absolute/shop/openspec/projects/shop-v1/spec.md",
+    "toolbox_path": "/absolute/shop/openspec/projects/shop-v1/toolbox.md",
+    "wiki_root": "/absolute/shop/wiki"
+  }
+}
+```
+
+The spec/toolbox files must exist; the Wiki root is created only for authorized
+curation. This optional extension preserves existing version-1 history. A
+checkpoint omitting project_context preserves its previous mapping. Resolve old
+records before tool selection; never reset counts to add these fields.
+
 `checkpoint` takes the same full record, existing id, and latest revision.
 Stages: planned, spec, apply, review, archived. Update only verified fields;
 preserve all scoped changes unless the user explicitly changes scope.

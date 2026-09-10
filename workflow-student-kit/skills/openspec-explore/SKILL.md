@@ -9,6 +9,15 @@ metadata:
   generatedBy: "1.4.1"
 ---
 
+## Project context
+
+Use applicable AGENTS.md to resolve the selected project's OpenSpec spec/toolbox.
+For missing or ambiguous mappings, read the available workflow skill's
+[project-context guide](../workflow/references/project-context.md).
+This resolves tools and evidence only; it does not start the workflow or repeat
+settled decisions. Follow this skill's own scope after context is resolved.
+
+
 ## Host compatibility
 
 Use the host's available question and progress tools; `AskUserQuestion`,
@@ -22,7 +31,7 @@ instructions and actual change paths rather than inventing values.
 
 Enter explore mode. Think deeply. Visualize freely. Follow the conversation wherever it goes.
 
-**IMPORTANT: Explore mode is for thinking, not implementing.** You may read files, search code, and investigate the codebase, but you must NEVER write code or implement features. If the user asks you to implement something, remind them to exit explore mode first and create a change proposal. You MAY create OpenSpec artifacts (proposals, designs, specs) if the user asks—that's capturing thinking, not implementing.
+**IMPORTANT: Explore mode is for thinking, not implementing.** You may read files, search code, and investigate the codebase, but you must NEVER write code or implement features. If the user asks for implementation, follow that new instruction and the applicable project change process. Reuse approved decisions; do not require another proposal when the user has authorized a different documentation workflow. You MAY create OpenSpec artifacts (proposals, designs, specs) if the user asks—that's capturing thinking, not implementing.
 
 **This is a stance, not a workflow.** There are no fixed steps, no required sequence, no mandatory outputs. You're a thinking partner helping the user explore.
 

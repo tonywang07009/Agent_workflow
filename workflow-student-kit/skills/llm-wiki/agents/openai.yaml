@@ -1,0 +1,4 @@
+interface:
+  display_name: "LLM Wiki"
+  short_description: "Curate project knowledge and assess evidence-backed improvements"
+  default_prompt: "Use $llm-wiki with the selected project's OpenSpec context and bounded evidence."

@@ -1,38 +1,31 @@
-# Optional Skill/Wiki closeout
+# Optional knowledge and quality closeout
 
-Offer this only after the entire development workflow completes, not after each
-task or change. Keep it separate from the mode question. Persist knowledge_offer
-as pending before asking, then accepted or declined after an explicit answer.
-Do not repeat a declined offer for the same workflow. No answer remains pending,
-not consent; on resume, remind the user of the existing unanswered question.
+Offer only after the entire development workflow completes. Save knowledge_offer
+pending before asking; accept/decline only on the user's answer. No answer stays
+pending. A declined offer is not repeated unless explicitly requested later.
+Mode selection and knowledge consent are separate questions; ask mode first.
 
-> All changes in this project are complete, with their records preserved. Would
-> you like a Skill/Wiki review using these OpenSpec artifacts, archives, and
-> validation records?
+> All scoped changes are complete. Would you like to curate their OpenSpec
+> evidence with llm-wiki and assess opportunities to improve skill quality?
 
 After acceptance:
+1. Resolve project_context spec_path, toolbox_path, wiki_root and all original/
+   archive change/evidence paths. Preserve completed development counts.
+2. Invoke the bundled llm-wiki in capture mode with the bounded project evidence.
+   It curates knowledge and automatically hands every completed update to
+   skill-evolution assess. Do not add another approval merely for this assessment.
+3. Verified path/link/command-typo maintenance is repaired and checked directly.
+   Quality changes require the evolution skill's distinct-event evidence and
+   candidate comparison. Assessment need not produce a candidate.
+4. A candidate remains outside active discovery during local trials. Stable
+   versions can be recommended for promotion; the user approves the exact target
+   and version. Missing a second task means pending validation, not failed curation.
+5. Mark knowledge_offer done after curation and its assessment finish, even if
+   a linked candidate awaits future tasks or promotion. Missing required curation
+   evidence or an unavailable assessment skill remains accepted/pending work.
+6. Report changed knowledge, maintenance, assessment outcome, candidate link and
+   any pending action. Evaluation/promotion feedback updates the same Wiki log
+   without recursively triggering a new assessment.
 
-1. Identify and verify project root, each original/archive change path, project
-   acceptance, tests, and review records. Bound evidence to this workflow; repair
-   missing links before drawing conclusions.
-2. Find the target project's actual Wiki/knowledge skill through its `AGENTS.md`
-   and available skills. Read its governance, source requirements, and write scope.
-   The bundle's `course/sources/wiki-*.md` files are read-only teaching snapshots,
-   not an executable Wiki skill; they may not exist in an installed practice repo.
-3. Use the project's bounded capture/curation procedure and prefer existing pages.
-   If no Wiki entry exists, explain this and offer an evidence-linked summary;
-   establish its destination before persisting it. Do not invent a Wiki system
-   or reuse RedCap example paths as target-project locations.
-4. Separate source facts, inference, and unverified claims. No reusable finding
-   means no update is needed. For a justified skill change, use an available
-   `skill-creator` and project rules to produce a reviewable diff, applicable
-   cases, counterexamples, and validation evidence.
-5. Consent to curation does not approve candidate activation or a confirmed Wiki
-   conclusion. Validate candidates, retain the original/diff, and let the user
-   decide activation. Keep the original when rejected or validation fails.
-6. Mark knowledge_offer done only when accepted work finishes. If blocked,
-   retain accepted and explain the missing tool/evidence and next step. Knowledge
-   work never adds to or removes the completed development count.
-
-The user may explicitly request another review of a declined or completed
-workflow. Identify the record, follow the new request, and do not recount delivery.
+The bundled llm-wiki works with local files; it does not require the external
+desktop application. Do not execute course/sources Wiki snapshots as live skills.

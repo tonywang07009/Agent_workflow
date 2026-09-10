@@ -3,6 +3,15 @@ name: codebase-design
 description: Shared vocabulary for designing deep modules. Use when the user wants to design or improve a module's interface, find deepening opportunities, decide where a seam goes, make code more testable or AI-navigable, or when another skill needs the deep-module vocabulary.
 ---
 
+## Project context
+
+Use applicable AGENTS.md to resolve the selected project's OpenSpec spec/toolbox.
+For missing or ambiguous mappings, read the available workflow skill's
+[project-context guide](../workflow/references/project-context.md).
+This resolves tools and evidence only; it does not start the workflow or repeat
+settled decisions. Follow this skill's own scope after context is resolved.
+
+
 # Codebase Design
 
 Design **deep modules**: a lot of behaviour behind a small interface, placed at a clean seam, testable through that interface. Use this language and these principles wherever code is being designed or restructured. The aim is leverage for callers, locality for maintainers, and testability for everyone.

@@ -1,0 +1,22 @@
+# MCP 工具 
+
+	- ponytail MCP 
+	   https://github.com/DietrichGebert/ponytail
+
+	- RTK MCP
+	   https://github.com/rtk-ai/rtk
+
+	- Openspce MCP
+	   https://github.com/Fission-AI/OpenSpec
+
+	- Symdex MCP
+	   https://github.com/husnainpk/SymDex
+
+
+# 協助架構
+
+	- LLM Wiki
+	   https://github.com/nashsu/llm_wiki
+
+	- Google evolution Skill
+	  https://arxiv.org/html/2608.27454

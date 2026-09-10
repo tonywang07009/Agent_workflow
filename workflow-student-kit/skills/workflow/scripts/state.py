@@ -98,6 +98,15 @@ def normalize_record(data):
               "openspec_root": absolute(data["openspec_root"], "dir"),
               "current_change": data.get("current_change"),
               "next_step": data.get("next_step", ""), "changes": []}
+    context = data.get("project_context")
+    if context is not None:
+        if not isinstance(context, dict):
+            raise ValueError("project_context must be an object")
+        result["project_context"] = {
+            "spec_path": absolute(context["spec_path"], "file"),
+            "toolbox_path": absolute(context["toolbox_path"], "file"),
+            "wiki_root": absolute(context["wiki_root"]),
+        }
     if not isinstance(result["next_step"], str):
         raise ValueError("next_step must be text")
     changes = data.get("changes")
@@ -146,8 +155,13 @@ def normalize_record(data):
 def apply(state, request):
     action = request["action"]
     if action in {"register", "checkpoint"}:
-        record = normalize_record(request["record"])
         wid = request.get("id") if action == "checkpoint" else str(uuid.uuid4())
+        supplied = request["record"]
+        if action == "checkpoint" and isinstance(supplied, dict) and "project_context" not in supplied:
+            previous = state["workflows"][wid].get("project_context")
+            if previous is not None:
+                supplied = {**supplied, "project_context": previous}
+        record = normalize_record(supplied)
         if action == "checkpoint" and state["workflows"][wid]["status"] != "active":
             raise ValueError("Completed workflows are immutable; do not recount")
         claimed = {c["original_path"] for c in record["changes"]}

@@ -3,6 +3,15 @@ name: tdd
 description: Test-driven development. Use when the user wants to build features or fix bugs test-first, mentions "red-green-refactor", or wants integration tests.
 ---
 
+## Project context
+
+Use applicable AGENTS.md to resolve the selected project's OpenSpec spec/toolbox.
+For missing or ambiguous mappings, read the available workflow skill's
+[project-context guide](../workflow/references/project-context.md).
+This resolves tools and evidence only; it does not start the workflow or repeat
+settled decisions. Follow this skill's own scope after context is resolved.
+
+
 # Test-Driven Development
 
 Read the current project's applicable `AGENTS.md` for tool routing and constraints.
@@ -27,8 +36,7 @@ A **seam** is the public boundary you test at: the interface where you observe b
 Before writing any test, record the test boundary, acceptance condition, and
 irreversible side effects. If all three are clear from the approved OpenSpec
 revision, proceed. If any one is unclear, stop: do not create or modify a test
-and start `$grill-with-docs` with the user. Resume only after its decision is
-recorded in the OpenSpec/TDD contract.
+and start `$grill-with-docs` with the user. Resume after the decision is recorded in the project's governing acceptance record.
 
 Tests bind observable business outcomes, not private functions, internal data
 structures, or incidental call order. For irreversible or security-sensitive
@@ -38,9 +46,9 @@ record, diagnosis without mutation, and no credential in output.
 ## Refusal-path tracer
 
 When an approved refusal behavior is missing, incorrect, or newly required,
-write a separate approved tracer before changing production code. Test the
+add an acceptance-driven tracer before changing production code. Test the
 public seam's exit code, human-readable reason, and absence of the specified
-irreversible side effects. Do not modify an existing high-risk refusal-path
+irreversible side effects. Do not modify a designated protected high-risk refusal-path
 test to add this case; record its boundary and validation evidence.
 
 Follow the current project's model-choice rules.
@@ -49,8 +57,8 @@ switch automatically.
 
 ## TDD contract
 
-For a code change, record this contract in the change `design.md` before the
-first test:
+For a code change, record this contract in the change design (or the existing
+project acceptance record when OpenSpec is explicitly out of scope) before the first test:
 
 ```md
 ## TDD contract
@@ -101,4 +109,4 @@ with `code-review`; implementation does not authorize commit or push.
 
 - **Red before green.** Write the failing test first, then only enough code to pass it. Don't anticipate future tests or add speculative features.
 - **One slice at a time.** One seam, one test, one minimal implementation per cycle.
-- **Refactoring is not part of the loop.** It belongs to the review stage (see the `code-review` skill), not the red → green implementation cycle.
+- **Refactor after GREEN when useful.** Preserve the tested interface and rerun affected checks. A changed acceptance condition returns to clarification; broad architecture changes need their own scope.

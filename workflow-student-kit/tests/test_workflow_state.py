@@ -61,6 +61,23 @@ class WorkflowStateTests(unittest.TestCase):
         self.assertEqual(data["mode"], "change")
         self.assertFalse(self.path.parent.exists())
 
+    def test_project_tool_context_is_preserved_on_resume_and_legacy_checkpoint(self):
+        record = self.record()
+        project = Path(record['openspec_root']) / 'projects' / 'shop'
+        project.mkdir(parents=True)
+        for name in ('spec.md', 'toolbox.md'):
+            (project / name).write_text('Fixture contract', encoding='utf-8')
+        context = {'spec_path': str(project / 'spec.md'),
+                   'toolbox_path': str(project / 'toolbox.md'),
+                   'wiki_root': str(self.root / 'shop/wiki')}
+        record['project_context'] = context
+        wid = self.send('register', record=record)['id']
+        del record['project_context']
+        saved = self.send('checkpoint', id=wid, record=record)
+        self.assertEqual(saved['workflows'][wid]['project_context'], context)
+        self.assertFalse(Path(context['wiki_root']).exists())
+        self.assertEqual(saved['completed_count'], 0)
+
     def test_resume_persists_id_goal_paths_and_next_action(self):
         record = self.record()
         wid = self.send("register", record=record)["id"]

@@ -1,0 +1,35 @@
+您好, 這邊我想要實做一個簡易校園失物招領管理工具, 以下是這個規格的簡易要求
+
+#必填
+## 業務邏輯說明
+
+	- 能夠輸入日期、 物件說明、地點與上傳照片
+	- 查詢能夠關鍵字與日期快速過濾物件
+	- 排版以圖為主,並且點圖展出對應物件說明、地點與遺失日期
+
+## 架構說明
+	lost_found/
+├── main_code
+	├── CLI.py              # CLI 互動與選單
+	├── models.py        # Item 資料模型
+	├── service.py         #   新增、查詢、借出、歸還
+	├── storage.py        #  JSON 讀寫
+├── Test_code
+	├── test_service.py     	# 至少 4 個測試
+	├── requirements.md    # 需求與驗收條件
+├── Project_Managemt
+	├──AGENTS.md           # 給 Codex 的專案規範 這個專案
+	└──openspec        	       # 管子任務
+
+
+##受眾說明
+
+	- for 大學校園
+	- 大學生 教授 70歲老人
+
+#選填
+
+## 使用工具
+	- Ruby on Rails ROR
+	
+## 價構對應的資料結構與虛擬碼流程說明

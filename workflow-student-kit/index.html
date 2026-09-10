@@ -5,11 +5,11 @@
 </style><style id="student-kit-workflow-frame">
   main.wrap { padding-top: 0; }
   .flow { width: 100vw; margin-left: calc(50% - 50vw); padding: 0; border: 0; border-radius: 0; background: transparent; }
-  .flow iframe { height: 100vh; min-height: 650px; border-radius: 0; }
+  .flow iframe { height: 1080px; min-height: 650px; border-radius: 0; }
 </style>
 </head><body><main class="wrap">
 <section class="flow" aria-label="Agent workflow 圖"><iframe src="course/workflow.html" title="Agent workflow 圖" loading="eager"></iframe></section>
-<section class="hero" aria-labelledby="page-title"><div><span class="kicker">互動課程</span><h1 id="page-title">Agent workflow 介紹</h1><p>從需求釐清、架構設計、規格、測試到知識留存，透過互動課程卡片認識 Agent workflow。</p><div class="toolbar"><button class="btn primary" id="start">開始課程</button></div></div></section>
+<section class="hero" aria-labelledby="page-title"><div><span class="kicker">互動課程</span><h1 id="page-title">Agent workflow 介紹</h1><p>以 $workflow 啟動或續接：依問題選擇工具、完成 OpenSpec changes，再以 Wiki 證據推動 Skill 品質提升。14 個英文 skills，8 段繁體中文教學，共 90 分鐘。</p><div class="toolbar"><button class="btn primary" id="start">開始課程</button><a class="btn" href="README.md">安裝與啟動</a><a class="btn" href="docs/tools.md">工具指南</a><a class="btn" href="management/AGENTS.md">Management 範本</a></div></div></section>
 <section aria-label="課程內容"><div class="cards" id="cards"></div></section>
 </main>
 <dialog id="lesson" aria-labelledby="lesson-title"><div class="dialog-head"><div><span class="kicker" id="lesson-time"></span><h2 id="lesson-title"></h2></div><button class="btn" id="close" aria-label="關閉教學卡">關閉 ×</button></div><div class="dialog-body" id="lesson-body"></div></dialog>
@@ -20,18 +20,18 @@
     "time": "00–08",
     "minutes": 8,
     "tag": "共同語言",
-    "lead": "把「要做什麼、怎麼做、用什麼、相信什麼」分開。",
+    "lead": "用一個入口接續專案，讓工具、規格、執行與知識各有責任。",
     "goal": "能用一句話區分 Skill、MCP、OpenSpec 與 Wiki。",
     "points": [
-      "Skill 是可重用的操作指引；由 agent 讀取後執行，不等於背景常駐程序。",
-      "MCP 是 host／client 與 server 交換工具、資源等能力的協定；CLI 是另一種工具入口。",
-      "OpenSpec 保存這次改動的要求、設計、任務；Wiki 保存可重用的來源、結論與限制。",
-      "主線：需求 → 領域與架構 → 規格 → TDD → 審查驗證 → 同步封存 → 知識整理 → 候選 → 人審。"
+      "$workflow 啟動或續接，先摘要實作目標、changes／tasks 進度、下一步與 OpenSpec 路徑。",
+      "AGENTS.md 指向專案契約；通用工具指南介紹能力，各專案依問題選擇組合。",
+      "change 內接續規格、實作、驗證、同步封存；整個 change 完成才停下。",
+      "所有 changes 與整體驗收完成才算一次 workflow，結案後詢問 Wiki 整理。"
     ],
-    "demo": "開啟上方 Archify 大圖，請學員指出：工具在哪裡？誰決定需求？誰允許知識變成 confirmed？",
-    "prompt": "請讀目前專案 AGENTS.md 與主工作流，只列本次任務需要的入口、證據與停止條件。",
+    "demo": "點選上方三段流程圖，指出專案工具設定、change 停點，以及 Wiki 回饋如何接回 Skill 改進。",
+    "prompt": "$workflow\n請先說明目前專案的目標、進度、下一步與 OpenSpec 專案設定路徑；若沒有現有專案，再釐清需求。",
     "output": "一份四欄對照：要求／程序／工具／證據。",
-    "stop": "工具清單不能推導為工具都健康；本課不啟動 RFsim 或 live control。",
+    "stop": "只看進度不開始實作；已提供的工具連結不代表工具目前可用。",
     "question": "安裝更多 MCP，會自動得到更好的規格嗎？",
     "answer": "不會。需求與驗收仍由人與 OpenSpec 決定；工具只提供可用能力。",
     "notes": [
@@ -42,6 +42,16 @@
     "sources": [
       "workflow.md",
       "project-toolbox.md"
+    ],
+    "references": [
+      {
+        "label": "Workflow",
+        "path": "skills/workflow/SKILL.md"
+      },
+      {
+        "label": "專案接入",
+        "path": "skills/workflow/references/project-context.md"
+      }
     ]
   },
   {
@@ -56,7 +66,7 @@
       "讀 AGENTS.md、範圍內設計與現況，先查事實再提問。",
       "寫明 goal、non-goals、owner、acceptance、stop／rollback。",
       "已決定的事情直接沿用；只有未決定且會影響行為的部分進入 grilling。",
-      "本例先定義「不足」：available < required；available = required 應允許。負值與非法輸入另列拒絕條件。"
+      "本例先定義「不足」：available \u003c required；available = required 應允許。負值與非法輸入另列拒絕條件。"
     ],
     "demo": "練習一（4 分鐘）：將「讓排程更穩定」改成一條可測需求。兩人互問：要觀察哪個輸出才算完成？",
     "prompt": "$grill-with-docs\n需求：資源不足時不得發送。請先查既有規則，再一次問一個尚未決定的行為；不要實作。",
@@ -71,6 +81,12 @@
     ],
     "sources": [
       "workflow.md"
+    ],
+    "references": [
+      {
+        "label": "Grill with Docs",
+        "path": "skills/grill-with-docs/SKILL.md"
+      }
     ]
   },
   {
@@ -82,11 +98,10 @@
     "lead": "讓 caller 少學規則，把同一概念的變更集中在 owner。",
     "goal": "說明 interface 的義務，並判斷新抽象是否必要。",
     "points": [
-      "domain-modeling 釐清詞彙與關係；CONTEXT.md 詞彙表不放實作設計。專案 wiki 的 CONTEXT.md 是另一份 context-packet 契約，不能混用。",
-      "interface 包含參數、前置條件、順序、錯誤與副作用；不只是函式名稱。",
-      "depth 看 caller 得到的 leverage；locality 看同一規則是否能在一個 owner 修改與驗證。",
-      "deletion test：刪掉後複雜度消失，是轉手層候選；刪掉後規則散到多個 caller，表示 module 有價值。",
-      "沒有真實變動需求就沿用既有 interface。兩個真實 adapter 才支持實際可替換性，不為了圖漂亮新增假 adapter。"
+      "使用 module、interface、depth、seam、adapter、leverage、locality 描述設計。",
+      "先找現有 owner。删除後複雜度消失代表可能只是轉手；複雜度回到多個 callers 代表原 module 有價值。",
+      "測試與實際 caller 穿過同一 interface；不要只測私有 helper 就宣稱整條流程正確。",
+      "只有實際差異才需要 adapter；一般任務先沿用足夠的設計，不必每次完整掃描。"
     ],
     "demo": "比較：每個 caller 自行檢查再發送；與既有 admission module 同時負責判定和拒絕結果。圈出測試入口與 state owner。",
     "prompt": "$codebase-design\n以現有 owner 為起點，列 interface 義務與 deletion test；只在有具體摩擦時比較 before／after。\n$domain-modeling\n確認 available、required、refusal 的精確意思。",
@@ -102,6 +117,16 @@
     "sources": [
       "workflow.md",
       "wiki-context.md"
+    ],
+    "references": [
+      {
+        "label": "Codebase Design",
+        "path": "skills/codebase-design/SKILL.md"
+      },
+      {
+        "label": "技能責任與交接",
+        "path": "docs/skill-contracts.md"
+      }
     ]
   },
   {
@@ -110,17 +135,16 @@
     "time": "30–42",
     "minutes": 12,
     "tag": "OpenSpec propose",
-    "lead": "行為寫進 specs；如何承擔複雜度寫進 design。",
+    "lead": "專案工具契約與功能 changes 分開，各自保留可追溯驗收。",
     "goal": "知道四種 artifact 的責任與依賴順序。",
     "points": [
-      "proposal.md：為何需要改、影響範圍與 non-goals。",
-      "specs：以領域語言寫正常、拒絕與邊界情境，不用未驗證實作冒充需求。",
-      "design.md：沿用 owner、interface 義務、seam 選擇與 before／after 理由。",
-      "tasks.md：以驗收切片，連到 production 使用的同一個 interface 測試。",
-      "propose 讀主工作流；apply 在讀取 CLI context files 後核對設計；review 依 Standards／Spec 檢查。專案 config.yaml 仍是 schema 設定，這次整合主要由 skill 入口生效。"
+      "management/ 提供英文範本；實際專案的 spec.md／toolbox.md 放在對應 OpenSpec 下。",
+      "projects/\u003cproject-key>/ 是教材建議的分組慣例；changes/specs 等 CLI 路徑仍由實際工具解析。",
+      "功能 specs 描述行為，design 記錄 owner 與 interface，tasks 連到驗證。",
+      "兩個大專案可選不同工具組合；Agent 不以最新修改時間猜測要使用哪份 Toolbox。"
     ],
     "demo": "只讀示範：openspec list --json。挑一個既有 change，對照 proposal、design、specs、tasks 各回答哪個問題。",
-    "prompt": "$openspec-propose\n為「資源不足拒絕且不發送」建立提案。沿用現有 owner；specs 寫可觀察情境，design 寫 interface 義務，tasks 覆蓋不足／剛好／充足。",
+    "prompt": "請沿用目前專案 OpenSpec，讀取對應 spec.md 與 toolbox.md，列出本次 change 的需求、owner、驗收與工具證據。",
     "output": "可供 apply 使用且範圍已確認的 artifacts；存在檔案不代表已批准執行。",
     "stop": "需求或驗收改變時回到 OpenSpec；不得從勾選完成推論 runtime 成功。",
     "question": "將 send_count = 0 只寫在 tasks，漏在 specs，可以嗎？",
@@ -132,29 +156,38 @@
     ],
     "sources": [
       "workflow.md"
+    ],
+    "references": [
+      {
+        "label": "專案規則範本",
+        "path": "management/AGENTS.md"
+      },
+      {
+        "label": "路由驗收範本",
+        "path": "management/openspec-project/spec.md"
+      }
     ]
   },
   {
     "id": "tools",
-    "title": "MCP 怎麼接到每一步",
+    "title": "依問題選擇工具",
     "time": "42–52",
     "minutes": 10,
     "tag": "取證工具",
-    "lead": "由問題選工具，工具回傳證據，agent 再判斷能支持什麼。",
+    "lead": "共用工具指南提供選項，專案 Toolbox 保存實際選擇。",
     "goal": "正確區分 MCP、CLI、文件與實際權限。",
     "points": [
-      "來源關係：Symdex MCP 查定義、caller、callee；MCP 未索引或無法回答才依專案規則使用本機 Symdex CLI。",
-      "Git：RTK 優先取得 status／diff／log；RTK 是 CLI 包裝工具，不是每次都經過 MCP。",
-      "文件：直接讀取 Markdown／設定／log；PDF 優先找快取，必要時用 MinerU／轉換工具。刷新快取是寫入。",
-      "OpenSpec CLI 管理 artifact；CMake／CTest 驗證程式；Archify CLI 產生教學圖。它們不是因為被 agent 使用就變成 MCP。",
-      "外部 Drive／GitHub 只在需要交付或協作時接入。今天沒有把憑證或個人 MCP 設定放進下載包。"
+      "SymDex 有 CLI／MCP，RTK 是 CLI proxy，OpenSpec 提供 CLI 與 agent workflows；不要全部稱為 MCP。",
+      "先拆解問題需要的證據，再選相關工具與檢查可用性，不必每次使用所有工具。",
+      "Toolbox 記錄工具、命令、工作目錄、副作用、fallback、輸出證據與停止條件。",
+      "缺少必要能力時只停止相關動作／結論；文字搜尋不等於完整呼叫關係。"
     ],
-    "demo": "在下方工具對照表選一列：問「誰呼叫這個函式」與問「上次 log 的 marker 是什麼」，讓學員挑不同入口。",
-    "prompt": "先讀 AGENTS.md 的 File Query Workflow。此題只需確認 caller：檢查 Symdex MCP 是否可用；依規則回報 fallback 與證據，不掃全 repo。",
-    "output": "工具、查詢範圍、回傳定位、可支持結論與限制。",
-    "stop": "本次會話未提供 Symdex／MinerU MCP 可呼叫介面；歷史 Toolbox health 不是當下健康證明。",
-    "question": "MCP server 宣告一個 write tool，就代表 agent 已獲准修改嗎？",
-    "answer": "不代表；可用能力與本次授權、檔案權限、專案規則仍分開判斷。",
+    "demo": "比較「修正記帳功能」與「整理研究文件」：各自需要哪些能力，哪些工具不必啟動？",
+    "prompt": "請讀通用工具指南，依本次問題選擇工具，檢查可用性，將實際命令、fallback 與證據限制記入本專案 Toolbox。",
+    "output": "一份可執行且有界的專案工具選擇與任務 packet。",
+    "stop": "不執行未填妥的範本命令，不複製他人機器的健康狀態與絕對路徑。",
+    "question": "工具出現在安裝清單中，是否代表本次可以直接使用？",
+    "answer": "不代表。仍須確認實際介面、安裝與存取狀態，以及它是否能提供本任務所需證據。",
     "notes": [
       "前 3 分：畫 host → client → server → resource／tool；補一條 shell → CLI。",
       "中間 4 分：以 caller／diff／PDF／結果發布四種題目分組選工具。",
@@ -162,6 +195,16 @@
     ],
     "sources": [
       "project-toolbox.md"
+    ],
+    "references": [
+      {
+        "label": "工具指南與安裝來源",
+        "path": "docs/tools.md"
+      },
+      {
+        "label": "Toolbox 範本",
+        "path": "management/openspec-project/toolbox.md"
+      }
     ]
   },
   {
@@ -180,7 +223,7 @@
       "build → transport → ACK → accept／reject → apply → outcome 是不同證據。完成驗收與 review 才 sync／archive；commit／push 仍需該範圍授權。"
     ],
     "demo": "展示假想 trace：request accepted、E2 ACK、缺少 gNB apply marker。請學員為「控制成功」投 PASS／PARTIAL／BLOCKED。這是判讀練習，不是假造 runtime log。",
-    "prompt": "$openspec-apply-change <change-name>\n先核對設計與測試入口。若本次只授權 RED，確認預期失敗後停止；若授權完整實作，逐驗收條件 RED → GREEN，再執行相關 review。",
+    "prompt": "$openspec-apply-change \u003cchange-name>\n先核對設計與測試入口。若本次只授權 RED，確認預期失敗後停止；若授權完整實作，逐驗收條件 RED → GREEN，再執行相關 review。",
     "output": "命令、退出碼、原始 log、驗收對應與 claim boundary。",
     "stop": "缺 apply marker 不能報控制套用成功；測試不足回 TDD，驗收改變回 OpenSpec。",
     "question": "收到 ACK，就可以寫「UE 效能改善」嗎？",
@@ -193,30 +236,38 @@
     "sources": [
       "workflow.md",
       "wiki-governance.md"
+    ],
+    "references": [
+      {
+        "label": "TDD",
+        "path": "skills/tdd/SKILL.md"
+      },
+      {
+        "label": "Code Review",
+        "path": "skills/code-review/SKILL.md"
+      }
     ]
   },
   {
     "id": "wiki",
-    "title": "把經驗編譯成 Wiki 與 Skill",
+    "title": "LLM Wiki 與品質評估",
     "time": "65–80",
     "minutes": 15,
     "tag": "WikiSkill 論文 × 本專案",
-    "lead": "Raw 保存觀察，Wiki 保存可追溯知識，Skill 保存可重用程序。",
+    "lead": "來源先形成知識，每次更新後自動評估是否值得改善 Skill。",
     "goal": "說明論文機制與本專案採用範圍，拒絕無證據自動演進。",
     "points": [
-      "論文第 4 頁圖 2：Raw／Wiki／Skill 三層；第 5–6 頁：執行、整理、提出候選、驗證與回退。",
-      "論文實驗在訓練 rollout 限制 Inference Agent 讀 wiki；validation score 嚴格高於最佳值才保留技能，否則回退技能，wiki 留存。這不是本專案的通用禁讀規則。",
-      "本專案以 redcap_research_wiki/index.md 導航，source_refs 回到來源；status 與 evidence_tier 是獨立欄位。",
-      "本專案 Runner 執行 active skill；Evolution Worker 只提一個候選；Water Spider 只判斷能否拉取，不改 wiki、skill 或 active state。",
-      "同根因至少兩次 + 正反證據；最多兩條代表 trace、一個已審 pattern／case、一個現有驗證命令；WIP = 1。",
-      "候選需 applicability、counterexample、stop_condition、validation_command、rejection_reason。通過唯讀驗證仍由人決定啟用；拒絕則保留舊版與拒絕理由。"
+      "大專案結案後，使用者同意才啟動 llm-wiki capture；保留 OpenSpec 原始／封存與驗證路徑。",
+      "每次完成 Wiki 更新後，直接交接 skill-evolution assess；純查詢與只讀檢查不觸發。",
+      "路徑、連結、已確認命令筆誤屬維護，直接修復並驗證，不等兩次事件。",
+      "品質候選需相同根因兩次、成功與失敗證據及可執行比較；不足就留知識與下一步。"
     ],
-    "demo": "對照 PDF 第 4–6 頁與來源快照 wiki-skill.md。再看「status: review-required、evidence_tier: runtime」：有 runtime 證據但尚未人審，合理嗎？",
-    "prompt": "請讀 wiki index 與 governance，選一個 query。先產生有 critical_check 的 context packet，只回答「ACK 能否支持 apply」；回到來源並保留 claim boundary，不升級 confirmed。",
-    "output": "一份有來源與反例的待審知識，或有拒絕理由的候選 envelope。",
-    "stop": "不得把規則文字檢查 PASS 當成演進效能提升；論文 benchmark 成績不能外推 RedCap。",
-    "question": "Skill 更新失敗時，是否刪掉那次 wiki 學到的失敗原因？",
-    "answer": "不刪。保留歷史與拒絕原因；錯誤結論以修訂或 superseded 處理，避免重新提出相同錯誤候選。",
+    "demo": "比較兩個案例：修正封存路徑；改善 Agent 經常漏掉拒絕情境的行為。指出哪個直接維護、哪個需要候選。",
+    "prompt": "$llm-wiki\n請整理本專案已完成 workflow 的 OpenSpec 與驗證證據，更新 Wiki 後自動評估 Skill 品質改進資格。",
+    "output": "有來源的 Wiki 條目與維護／不足證據／無需修改／候選的評估結果。",
+    "stop": "Wiki 同意不代表 Skill 啟用；來源不足不宣稱成功。回饋紀錄不再次觸發遞迴評估。",
+    "question": "每次 Wiki 更新是否都必須修改 Skill？",
+    "answer": "不必。每次更新都評估；證據不足或沒有改進必要也是有效結果。維護修復則另按已確認意圖直接處理。",
     "notes": [
       "前 4 分：介紹論文三層與四步，不講未在本專案量測的提升百分比。",
       "中間 6 分：逐項對照論文與人審版限制，澄清 Water Spider 是本專案角色。",
@@ -227,46 +278,70 @@
       "wiki-context.md",
       "wiki-skill.md",
       "wiki-index.md"
+    ],
+    "references": [
+      {
+        "label": "LLM Wiki",
+        "path": "skills/llm-wiki/SKILL.md"
+      },
+      {
+        "label": "候選資格",
+        "path": "skills/skill-evolution/references/eligibility.md"
+      }
     ]
   },
   {
     "id": "cycle",
-    "title": "定期更新與帶回自己的專案",
+    "title": "局部驗證，再決定推廣",
     "time": "80–90",
     "minutes": 10,
-    "tag": "週期作業 · 學員練習",
-    "lead": "固定時間檢查，只有證據成熟才更新。",
+    "tag": "skill-evolution",
+    "lead": "同版本、不同任務、可比較證據，讓品質改進先在專案內成立。",
     "goal": "完成一次候選拒絕判斷，知道下載包如何使用。",
     "points": [
-      "建議節奏（本次未啟動排程）：每次任務後保留原始證據；每週先 lint，再獨立做一次 capture-triage；每月人審候選與回退紀錄。",
-      "每次 wiki invocation 只選一個 operation；不要在一次呼叫混做 lint、query、sync-docs。",
-      "結論型 query／decide／case-draft 先做 context packet 與 critical_check；純 lint 不需 packet。",
-      "沒有重複根因或缺負面反例 → 記錄 none／拒絕，既不建立也不啟用候選。",
-      "下載包先在新的練習目錄安裝；再用自己的 AGENTS.md、glossary、驗證命令替換專案接點。課程繁體中文，通用 skills 保留英文原指引。"
+      "原版與候選分開保存；候選不放入預設技能發現目錄，執行驗證時明確指定。",
+      "同一版本通過兩個不同專案內任務，至少一個未用於撰寫候選；修改候選後重驗。",
+      "正確性與完整性優先，目標問題要改善，必要驗收不退步；時間與 token 是次要觀察。",
+      "穩定後才提出本機／共用更新建議，由使用者決定指定目標與版本；保留原版與 Wiki 歷史。"
     ],
-    "demo": "練習二（5 分鐘）：手上有兩次相同失敗，但沒有成功對照。能提候選嗎？請填拒絕理由和下一個最小取證動作，再對照答案。",
-    "prompt": "請按目前 wiki skill 的 Water Spider pull rule 判斷：同根因兩次失敗，但沒有正面證據。只回傳拒絕理由與下一步；不得建立或啟用候選。",
-    "output": "拒絕：缺少正面證據；下一步：取得同範圍成功 trace，確認差異確實能區分根因，再重新資格判定。",
-    "stop": "排程只是觸發檢查，不能代替人審；未確認效果不更新 active skill。",
-    "question": "時間到就一定要產生一個新 Skill 嗎？",
-    "answer": "不必。none 或明確拒絕是有效成果，能防止規則越長越難用。",
+    "demo": "練習：候選通過同一任務兩次，另一個新任務卻漏了拒絕情境。判斷能否建議推廣。",
+    "prompt": "$skill-evolution\n請比較本專案原版與候選在兩個不同任務的結果，包含未參與撰寫的任務；先回報品質與退步，不啟用共用版本。",
+    "output": "版本固定的比較、promotion-ready／pending／rejected 結果，以及 Wiki 回饋連結。",
+    "stop": "結構檢查不證明 Agent 品質；兩次同任務不算兩個任務，候選不能自行降低啟用門檻。",
+    "question": "候選格式檢查通過，就可以更新共用 Skill 嗎？",
+    "answer": "不行。還需不同任務的實際品質證據、沒有必要驗收退步，以及使用者對指定版本與目標的啟用決定。",
     "notes": [
-      "前 2 分：介紹任務後／每週／每月節奏與責任人。",
-      "中間 5 分：學員作答候選資格並說明下一步。",
-      "最後 3 分：開下載包、示範安裝命令與回家作業：在自己的 repo 寫一條拒絕路徑驗收。"
+      "前 4 分：區分 Wiki 知識與 active skill，說明候選的隔離位置。",
+      "中間 5 分：比較兩個不同任務與一次重跑，討論版本變更後為何重驗。",
+      "最後 3 分：展示 management/ 範本、$workflow 啟動提示與本機先驗證的回家作業。"
     ],
     "sources": [
       "wiki-skill.md",
       "wiki-governance.md"
+    ],
+    "references": [
+      {
+        "label": "Skill Evolution",
+        "path": "skills/skill-evolution/SKILL.md"
+      },
+      {
+        "label": "驗證規則",
+        "path": "skills/skill-evolution/references/evaluation.md"
+      },
+      {
+        "label": "推廣與回退",
+        "path": "skills/skill-evolution/references/promotion.md"
+      }
     ]
   }
 ]
 </script>
 <script>
+window.addEventListener('message',event=>{const frame=document.querySelector('.flow iframe');if(event.source===frame.contentWindow&&event.data?.type==='workflow-height'&&Number.isFinite(event.data.height)){frame.style.height=Math.max(650,Math.min(5000,event.data.height+8))+'px';}});
 const lessons=JSON.parse(document.getElementById('lesson-data').textContent);
 const dialog=document.getElementById('lesson');let current=0;
 const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 document.getElementById('cards').innerHTML=lessons.map((c,i)=>`<button class="card" data-lesson="${i}" aria-haspopup="dialog"><span class="num">${String(i+1).padStart(2,'0')} ／ ${esc(c.time)} 分</span><h3>${esc(c.title)}</h3><p>${esc(c.lead)}</p><span class="foot">${esc(c.tag)} ↗</span></button>`).join('');
-function showLesson(i){current=i;const c=lessons[i];document.getElementById('lesson-title').textContent=c.title;document.getElementById('lesson-time').textContent=`第 ${i+1} 段 · ${c.time} 分 · ${c.tag}`;document.getElementById('lesson-body').innerHTML=`<h3>這一段要學會</h3><p>${esc(c.goal)}</p><ul>${c.points.map(p=>`<li>${esc(p)}</li>`).join('')}</ul><h3>示範與練習</h3><p>${esc(c.demo)}</p><h3>可貼給 agent 的提示詞</h3><pre>${esc(c.prompt)}</pre><h3>應得到的產物</h3><p>${esc(c.output)}</p><p class="note"><strong>停止條件：</strong>${esc(c.stop)}</p><details><summary>課堂提問：${esc(c.question)}</summary><p>${esc(c.answer)}</p></details><details><summary>講者節奏與提示</summary><ul>${c.notes.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></details><p class="small">來源快照：${c.sources.map(s=>`<a href="course/sources/${esc(s)}" target="_blank" rel="noopener">${esc(s)}</a>`).join(' · ')}；論文與線上來源見來源索引。</p><div class="dialog-bottom"><button class="btn" id="previous" ${i===0?'disabled':''}>← 上一段</button><button class="btn primary" id="next" ${i===lessons.length-1?'disabled':''}>下一段 →</button></div>`;document.getElementById('previous').onclick=()=>showLesson(i-1);document.getElementById('next').onclick=()=>showLesson(i+1);if(!dialog.open)dialog.showModal();dialog.scrollTop=0;document.getElementById('close').focus();}
+function showLesson(i){current=i;const c=lessons[i];document.getElementById('lesson-title').textContent=c.title;document.getElementById('lesson-time').textContent=`第 ${i+1} 段 · ${c.time} 分 · ${c.tag}`;document.getElementById('lesson-body').innerHTML=`<h3>這一段要學會</h3><p>${esc(c.goal)}</p><ul>${c.points.map(p=>`<li>${esc(p)}</li>`).join('')}</ul><h3>示範與練習</h3><p>${esc(c.demo)}</p><h3>可貼給 agent 的提示詞</h3><pre>${esc(c.prompt)}</pre><h3>應得到的產物</h3><p>${esc(c.output)}</p><p class="note"><strong>停止條件：</strong>${esc(c.stop)}</p><details><summary>課堂提問：${esc(c.question)}</summary><p>${esc(c.answer)}</p></details><details><summary>講者節奏與提示</summary><ul>${c.notes.map(p=>`<li>${esc(p)}</li>`).join('')}</ul></details><p class="small">目前實作：${(c.references||[]).map(r=>`<a href="${esc(r.path)}" target="_blank" rel="noopener">${esc(r.label)}</a>`).join(" · ")}</p><p class="small">歷史來源快照（非現行操作規則）：${c.sources.map(s=>`<a href="course/sources/${esc(s)}" target="_blank" rel="noopener">${esc(s)}</a>`).join(' · ')}；論文與線上來源見來源索引。</p><div class="dialog-bottom"><button class="btn" id="previous" ${i===0?'disabled':''}>← 上一段</button><button class="btn primary" id="next" ${i===lessons.length-1?'disabled':''}>下一段 →</button></div>`;document.getElementById('previous').onclick=()=>showLesson(i-1);document.getElementById('next').onclick=()=>showLesson(i+1);if(!dialog.open)dialog.showModal();dialog.scrollTop=0;document.getElementById('close').focus();}
 document.getElementById('cards').onclick=e=>{const b=e.target.closest('[data-lesson]');if(b)showLesson(Number(b.dataset.lesson));};document.getElementById('start').onclick=()=>showLesson(0);document.getElementById('close').onclick=()=>dialog.close();
 </script></body></html>

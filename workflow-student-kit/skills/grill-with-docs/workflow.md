@@ -58,8 +58,8 @@ acceptance example, not evidence that a particular implementation passes.
 
 ## Project authority and evidence
 
-Read the current project's `AGENTS.md` first. It owns constraints and tool
-routing. Its Toolbox owns concrete commands and stop conditions. OpenSpec owns
+Read the current project's `AGENTS.md` first. It owns constraints and project-context selection. The selected OpenSpec
+project's toolbox owns effective tools, fallbacks, commands and stop conditions. OpenSpec owns
 requirements, design, and acceptance; issue trackers are mirrors when the project
 uses that policy. Skills own procedure, not duplicate project rules.
 
@@ -85,3 +85,12 @@ tool availability, successful compilation, or a checked task box.
 Keep stable decisions in design and append run/review evidence to the project's
 existing evidence records. Close only after required tests, review, and spec
 reconciliation. Publishing, commits, or pushes need authorization for that scope.
+
+## Knowledge handoff
+
+Whole-workflow closeout offers llm-wiki. Each completed Wiki update passes bounded
+sources and patterns to skill-evolution assess. Verified maintenance is repaired
+directly; quality candidates use its evidence and stable local validation rules.
+The evolution result is feedback to the originating Wiki record, not another
+trigger. Keep project mappings in the available workflow skill's
+[project-context guide](../workflow/references/project-context.md).
