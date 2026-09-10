@@ -44,20 +44,35 @@ for name in ('workflow', 'llm-wiki', 'skill-evolution'):
 index = (root / 'index.html').read_text(encoding='utf-8')
 embedded = re.search(r'<script id="lesson-data" type="application/json">(.*?)</script>', index, re.S)
 assert embedded and json.loads(embedded[1]) == lessons, 'Run course/build.py'
-flow = json.loads((root / 'course/workflow.json').read_text(encoding='utf-8'))
-viewer = (root / 'course/workflow.html').read_text(encoding='utf-8')
-flow_data = re.search(r'<script id="workflow-data" type="application/json">(.*?)</script>', viewer, re.S)
-assert flow_data and json.loads(flow_data[1]) == flow, 'Run course/build.py'
+flow = json.loads((root / 'course/workflow.archify.json').read_text(encoding='utf-8'))
+viewer_path = root / 'course/workflow.html'
+viewer = viewer_path.read_text(encoding='utf-8')
+assert flow['schema_version'] == 2 and flow['diagram_type'] == 'workflow'
+assert flow['meta']['quality_profile'] == 'showcase'
 ids = [node['id'] for node in flow['nodes']]
 assert len(ids) == len(set(ids)) == 10
-assert [node for lane in flow['lanes'] for node in lane['nodes']] == ids
-assert '__WORKFLOW_DATA__' not in viewer
-for page in (index, viewer):
-    for url in re.findall(r'(?:href|src)="([^"]+)"', page):
-        if '://' in url or url.startswith('#') or '$' in url:
-            continue
-        base = root if page == index else root / 'course'
-        assert (base / url.split('#', 1)[0]).is_file(), url
+assert set(re.findall(r'<g id="node-[^"]+" data-node-id="([^"]+)"', viewer)) == set(ids)
+for edge in flow['edges']:
+    assert edge['from'] in ids and edge['to'] in ids
+receipt = json.loads((root / 'course/workflow.delivery.json').read_text(encoding='utf-8'))
+for name, file in [('specification', root / 'course/workflow.archify.json'), ('artifact', viewer_path)]:
+    data = file.read_bytes()
+    assert receipt[name]['sha256'] == hashlib.sha256(data).hexdigest(), name
+    assert receipt[name]['bytes'] == len(data), name
+assert receipt['ok'] and receipt['validation']['checksPassed'] == 9
+assert receipt['validation']['errors'] == receipt['validation']['warnings'] == 0
+# Parse actual HTML elements, excluding JavaScript string templates.
+from html.parser import HTMLParser
+class LocalLinks(HTMLParser):
+    def handle_starttag(self, tag, attrs):
+        for key, url in attrs:
+            if key not in ('href', 'src') or not url or ':' in url or url.startswith('#'):
+                continue
+            assert (self.base / url.split('#', 1)[0].split('?', 1)[0]).is_file(), url
+for base, page in [(root, index), (root / 'course', viewer)]:
+    parser = LocalLinks()
+    parser.base = base
+    parser.feed(page)
 assert not (root / 'openspec').exists()
 assert not (root / 'wiki').exists()
 

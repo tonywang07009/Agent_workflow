@@ -5,9 +5,10 @@
 </style><style id="student-kit-workflow-frame">
   main.wrap { padding-top: 0; }
   .flow { width: 100%; margin-left: 0; padding: 0; border: 0; border-radius: 0; background: transparent; }
-  .flow iframe { height: 1080px; min-height: 650px; border-radius: 0; }
+  .flow iframe { height: min(900px, 100svh); min-height: 650px; border-radius: 0; }
 </style>
 </head><body><main class="wrap">
+<p class="small"><a href="course/workflow.html" target="_blank" rel="noopener">開啟完整 Archify 架構圖 ↗</a></p>
 <section class="flow" aria-label="Agent workflow 圖"><iframe src="course/workflow.html" title="Agent workflow 圖" loading="eager"></iframe></section>
 <section class="hero" aria-labelledby="page-title"><div><span class="kicker">互動課程</span><h1 id="page-title">Agent workflow 介紹</h1><p>以 $workflow 啟動或續接：依問題選擇工具、完成 OpenSpec changes，再以 Wiki 證據推動 Skill 品質提升。14 個英文 skills，8 段繁體中文教學，共 90 分鐘。</p><div class="toolbar"><button class="btn primary" id="start">開始課程</button><a class="btn" href="README.md">安裝與啟動</a><a class="btn" href="docs/tools.md">工具指南</a><a class="btn" href="management/AGENTS.md">Management 範本</a></div></div></section>
 <section aria-label="課程內容"><div class="cards" id="cards"></div></section>
@@ -337,7 +338,6 @@
 ]
 </script>
 <script>
-window.addEventListener('message',event=>{const frame=document.querySelector('.flow iframe');if(event.source===frame.contentWindow&&event.data?.type==='workflow-height'&&Number.isFinite(event.data.height)){frame.style.height=Math.max(650,Math.min(5000,event.data.height+8))+'px';}});
 const lessons=JSON.parse(document.getElementById('lesson-data').textContent);
 const dialog=document.getElementById('lesson');let current=0;
 const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

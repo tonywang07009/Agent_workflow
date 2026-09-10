@@ -22,4 +22,8 @@
 - WikiSkill 論文：知識回饋與 Skill 改善方法參考
   https://arxiv.org/html/2608.27454
 
+# 漂亮架構圖工具
+- archify
+  https://github.com/tt-a1i/archify.git
+
 教材採用的兩次事件、兩項任務與使用者確認門檻屬於教學政策，並非論文的強制規定。

@@ -221,6 +221,18 @@
     },
     "policy": "Wiki updates trigger bounded assessment; routine verified repairs are direct; quality candidates remain project-local until stable trials and explicit target/version activation",
     "validation": "docs/validation.md",
-    "source_note": "Historical course/sources snapshots preserved; current viewer is original teaching-kit code, not an Archify-generated artifact"
+    "source_note": "Historical course/sources snapshots preserved; custom viewer subsequently replaced by the user-requested local Archify regeneration recorded below."
+  },
+  "archify_regeneration": {
+    "date": "2026-09-10",
+    "source_project": "../archify",
+    "version": "2.17.0-dev.1",
+    "scope": "User-requested replacement of the custom course diagram with locally generated Archify Workflow v2",
+    "specification": "course/workflow.archify.json",
+    "artifact": "course/workflow.html",
+    "delivery_receipt": "course/workflow.delivery.json",
+    "browser_receipt": "course/workflow.visual-check.json",
+    "visual_review": "docs/validation.md",
+    "upstream_modified": false
   }
 }

@@ -3,7 +3,9 @@
 現行通用版：工具選擇見 `../docs/tools.md`，管理範本見 `../management/`，
 技能責任見 `../docs/skill-contracts.md`。新增 llm-wiki 與 skill-evolution
 由本教材依使用者決策撰寫，不是外部桌面程式的安裝副本。
-現行 workflow.json／workflow.html 為本教材離線檢視器，由 build.py 產生。
+現行 workflow.archify.json／workflow.html 由本機 Archify CLI 生成，
+build.py --archify-root 可重建。workflow.delivery.json 與 workflow.visual-check.json
+是此次圖面的驗收證據，workflow.visual-check.*.png 為此次截圖。
 Archify 的舊截圖、健康檢查與下列原始專案資料均保留為歷史紀錄，
 不代表通用版今日的路由或工具可用性；course/sources/ 原快照不改寫。
 
@@ -22,7 +24,7 @@ Archify 的舊截圖、健康檢查與下列原始專案資料均保留為歷史
 | Active wiki skill | `redcap_library/skills/redcap_research_wiki/SKILL.md`；快照 `sources/wiki-skill.md` | Runner、Evolution Worker、Water Spider、WIP = 1、人審 | 本專案採用的受限流程，非論文完整自動實驗 |
 | WikiSkill 論文 | `agent_doc/wikiskill.pdf` 第 4 頁圖 2、§3.1；第 5–6 頁 §3.2.1–3.2.4 | 三層、四步、validation gating、skill rollback 與 wiki 留存 | benchmark 不直接推論 RedCap 改善；本次未重跑論文 |
 | Registry | `redcap_library/bash_tool/registry.json` 的兩個 wiki 驗證條目 | 操作入口、輸出與副作用 | manifest 需求仍依 root 規則；普通唯讀檢查不額外建長任務 manifest |
-| Archify | [官方專案](https://github.com/tt-a1i/archify)；本機套件 2.17.0-dev.1 | workflow JSON → HTML；固定工具列英文 | 本次使用既有暫存套件，未修改或升級安裝 |
+| Archify | [官方專案](https://github.com/tt-a1i/archify)；本機套件 2.17.0-dev.1 | workflow JSON → HTML；固定工具列英文 | 使用相鄰 archify 專案，未修改或升級安裝 |
 | MCP | [官方架構說明](https://modelcontextprotocol.io/docs/learn/architecture) | host／client／server、工具與資源分工 | 無法推論某個 server 今日健康 |
 | Skills | [官方技能說明](https://learn.chatgpt.com/docs/build-skills) | Skills 包裝指引與資源 | 各 host 支援的發現方式與工具名稱須依版本核對 |
 
@@ -60,7 +62,9 @@ RESEARCH_WIKI_SKILL_EVOLUTION_CONTRACT PASS bounded_packet=1 refusal=1 wip=1 hum
 
 第一項檢查 wiki 結構；第二項原腳本使用字串匹配確認規則存在。本課明確不把第二項當作實際 refusal、promotion 或效能測試。
 
-Archify：`archify-delivery.json` 記錄 JSON／HTML 雜湊與 9/9 檢查；`archify-browser.json` 記錄四種桌面尺寸檢查；`workflow.visual-check.*.png` 保留原圖截圖。原始 receipt 含建置暫存路徑，交付後以 SHA-256 對應相同位元組。
+Archify 歷史紀錄：`archify-delivery.json` 與 `archify-browser.json` 保留原版驗收。
+現行圖面請查看 `workflow.delivery.json`、`workflow.visual-check.json` 與
+`workflow.visual-check.*.png`。Receipt 以 SHA-256 綁定對應規格及產物。
 
 教材：`course-browser.json` 記錄 8 張卡片、答案、下一段、Esc 與桌面／手機寬度檢查。`course-preview.png`／`card-preview.png` 是實際瀏覽器畫面。圖與卡片均經視覺檢視；長內容按正常頁面與對話框捲動，不裁掉教學內容。
 

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "workflow",
+  "input": "C:\\Users\\tony2\\Documents\\Codex\\Agent_workflow\\workflow-student-kit\\course\\workflow.archify.json",
+  "output": "C:\\Users\\tony2\\Documents\\Codex\\Agent_workflow\\workflow-student-kit\\course\\workflow.html",
+  "specification": {
+    "sha256": "c24b6c7fcf2ff9076a4d0c891928593d9b1837a1bb50001bcc51bb4356a9ad35",
+    "bytes": 4800
+  },
+  "artifact": {
+    "sha256": "e10652825b49c9313241c3490550cfb28d77d48f00622e7f491b00333e99a6ad",
+    "bytes": 808909
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

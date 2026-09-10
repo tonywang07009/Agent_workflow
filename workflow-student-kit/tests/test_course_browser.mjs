@@ -53,20 +53,28 @@ try {
  assert.ok(await js('document.documentElement.scrollWidth<=window.innerWidth'),'Mobile index horizontal overflow');
  await send('Emulation.setDeviceMetricsOverride',{width:1440,height:1100,deviceScaleFactor:1,mobile:false});
  await send('Page.navigate',{url:pathToFileURL(path.join(root,'course/workflow.html')).href});
- for(let i=0;i<60;i++){if(await js("document.querySelectorAll('.node').length===10"))break;await new Promise(r=>setTimeout(r,100));}
- assert.equal(await js("document.querySelectorAll('.node').length"),10);
- await js("document.querySelector('[data-node=assess]').click()");
- assert.match(await js("document.getElementById('detail-points').textContent"),/筆誤直接修復/);
- await js("document.querySelector('[data-mode=auto]').click()");
- assert.match(await js("document.getElementById('mode-text').textContent"),/未決策事項/);
- await js("document.querySelector('[data-node=trial]').click()");
- assert.match(await js("document.getElementById('detail-points').textContent"),/兩個不同任務/);
+ for(let i=0;i<60;i++){if(await js("document.querySelectorAll('g[id^=node-][data-node-id]').length===10"))break;await new Promise(r=>setTimeout(r,100));}
+ assert.equal(await js("document.querySelectorAll('g[id^=node-][data-node-id]').length"),10);
+ await js("document.getElementById('node-assess').dispatchEvent(new MouseEvent('click',{bubbles:true}))");
+ assert.equal(await js("document.getElementById('node-assess').getAttribute('aria-pressed')"),'true');
+ await js("document.getElementById('btn-focus-clear').click()");
+ assert.equal(await js("document.getElementById('node-assess').getAttribute('aria-pressed')"),'false');
+ await js("document.getElementById('btn-node-finder').click()");
+ await js("const input=document.getElementById('node-finder-input');input.value='trial';input.dispatchEvent(new Event('input',{bubbles:true}));");
+ assert.ok(await js("document.getElementById('node-finder').textContent.includes('trial')"));
+ await js("document.getElementById('node-finder-close').click()");
+ const theme=await js("document.getElementById('btn-theme').getAttribute('aria-pressed')");
+ await js("document.getElementById('btn-theme').click()");
+ assert.notEqual(await js("document.getElementById('btn-theme').getAttribute('aria-pressed')"),theme);
+ await js("document.getElementById('btn-export').click()");
+ assert.equal(await js("document.getElementById('btn-export').getAttribute('aria-expanded')"),'true');
+ await js("document.getElementById('btn-export').click()");
  await writeFile(path.join(output,'workflow-desktop.png'),Buffer.from((await send('Page.captureScreenshot',{format:'png'})).data,'base64'));
  await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:true});
  assert.ok(await js('document.documentElement.scrollWidth<=window.innerWidth'),'Mobile horizontal overflow');
  await writeFile(path.join(output,'workflow-mobile.png'),Buffer.from((await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:true})).data,'base64'));
  assert.deepEqual(errors,[]);
- console.log(JSON.stringify({status:'PASS',cards:8,nodes:10,checks:['offline file URLs','dialogs and navigation','active references','maintenance distinction','mode demo','local stability','mobile width','no runtime exceptions'],screenshots:output}));
+ console.log(JSON.stringify({status:'PASS',cards:8,nodes:10,checks:['offline file URLs','dialogs and navigation','active references','Archify node focus and close','node search','theme toggle','export menu','mobile width','no runtime exceptions'],screenshots:output}));
  await send('Browser.close').catch(()=>{});
 } finally {
  if(socket)socket.close();proc.kill();

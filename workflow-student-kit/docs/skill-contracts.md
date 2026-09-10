@@ -47,7 +47,7 @@ Design vocabulary belongs to codebase-design.
 | Resume project context; preserve legacy counts | tests/test_workflow_state.py |
 | Distinct current tasks, holdout, resource changes and regression refusal | tests/test_evolution.py through the actual evaluation CLI |
 | Course data, local links and installed resources agree | verify.py / course/build.py |
-| Offline diagrams, lesson dialogs, mode demo, mobile width | tests/test_course_browser.mjs with a fresh browser profile |
+| Offline Archify diagram, lesson dialogs, node focus/search/theme, page width | tests/test_course_browser.mjs with a fresh browser profile |
 
 Manual contract walkthroughs:
 - Missing SymDex uses only the declared fallback; no unsupported complete-call-graph claim.

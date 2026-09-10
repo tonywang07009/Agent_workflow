@@ -1,0 +1,205 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Workflow｜從專案接入到知識改善",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    {
+      "id": "setup",
+      "label": "專案接入"
+    },
+    {
+      "id": "delivery",
+      "label": "開發主流程"
+    },
+    {
+      "id": "knowledge",
+      "label": "知識與品質"
+    }
+  ],
+  "mainPath": [
+    "intent",
+    "tools",
+    "context",
+    "change"
+  ],
+  "nodes": [
+    {
+      "id": "intent",
+      "lane": "setup",
+      "col": 0,
+      "type": "external",
+      "label": "啟動／續接",
+      "sublabel": "目標、進度、下一步",
+      "width": 192
+    },
+    {
+      "id": "tools",
+      "lane": "setup",
+      "col": 1,
+      "type": "backend",
+      "label": "依問題選工具",
+      "sublabel": "能力、限制、證據",
+      "width": 192
+    },
+    {
+      "id": "context",
+      "lane": "setup",
+      "col": 2,
+      "type": "database",
+      "label": "OpenSpec 設定",
+      "sublabel": "spec.md + toolbox.md",
+      "width": 192
+    },
+    {
+      "id": "change",
+      "lane": "delivery",
+      "col": 2,
+      "type": "backend",
+      "label": "完成一個 change",
+      "sublabel": "規格、實作、驗證、封存",
+      "width": 192
+    },
+    {
+      "id": "checkpoint",
+      "lane": "delivery",
+      "col": 1,
+      "type": "security",
+      "label": "Change 完成停點",
+      "sublabel": "回報成果，等待續接",
+      "width": 192
+    },
+    {
+      "id": "close",
+      "lane": "delivery",
+      "col": 0,
+      "type": "backend",
+      "label": "整個 Workflow 結案",
+      "sublabel": "全部 changes 與整體驗收",
+      "width": 192
+    },
+    {
+      "id": "wiki",
+      "lane": "knowledge",
+      "col": 0,
+      "type": "database",
+      "label": "LLM Wiki 更新",
+      "sublabel": "完整結案後，先詢問",
+      "width": 192
+    },
+    {
+      "id": "assess",
+      "lane": "knowledge",
+      "col": 1,
+      "type": "backend",
+      "label": "維護或品質改善",
+      "sublabel": "每次 Wiki 更新後評估",
+      "width": 192
+    },
+    {
+      "id": "trial",
+      "lane": "knowledge",
+      "col": 2,
+      "type": "backend",
+      "label": "專案內穩定驗證",
+      "sublabel": "同一候選、兩個任務",
+      "width": 192
+    },
+    {
+      "id": "promote",
+      "lane": "knowledge",
+      "col": 3,
+      "type": "security",
+      "label": "決定是否推廣",
+      "sublabel": "指定版本、目標與回退",
+      "width": 192
+    }
+  ],
+  "edges": [
+    {
+      "id": "flow-0",
+      "from": "intent",
+      "to": "tools"
+    },
+    {
+      "id": "flow-1",
+      "from": "tools",
+      "to": "context"
+    },
+    {
+      "id": "flow-2",
+      "from": "context",
+      "to": "change"
+    },
+    {
+      "id": "flow-3",
+      "from": "change",
+      "to": "checkpoint"
+    },
+    {
+      "id": "flow-4",
+      "from": "checkpoint",
+      "to": "close",
+      "label": "全部完成"
+    },
+    {
+      "id": "flow-5",
+      "from": "close",
+      "to": "wiki",
+      "label": "同意整理"
+    },
+    {
+      "id": "flow-6",
+      "from": "wiki",
+      "to": "assess"
+    },
+    {
+      "id": "flow-7",
+      "from": "assess",
+      "to": "trial",
+      "label": "品質候選"
+    },
+    {
+      "id": "flow-8",
+      "from": "trial",
+      "to": "promote",
+      "label": "穩定後"
+    },
+    {
+      "id": "flow-9",
+      "from": "checkpoint",
+      "to": "change",
+      "label": "尚有 changes",
+      "role": "return",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Change 停點與累計",
+      "items": [
+        "預設每個 change 完成後停下；同一 change 內接續完成各階段。",
+        "同一本機使用者跨專案完成 5 次整個 workflow，才詢問是否改為自動接續；拒絕後不再主動重問。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "修復與品質改善",
+      "items": [
+        "已確認的路徑、連結與命令筆誤直接修復驗證。品質候選需兩次相同根因事件及正反證據。",
+        "同一候選通過兩個不同任務，至少一個未用於撰寫；改版後重新驗證。"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "專案範圍與知識回饋",
+      "items": [
+        "spec.md／toolbox.md 指向實際 OpenSpec 專案路徑；候選先隔離在專案內。",
+        "穩定後由使用者決定啟用或共用；拒絕與回退保留於 Wiki，回饋紀錄不遞迴觸發評估。"
+      ]
+    }
+  ]
+}

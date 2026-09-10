@@ -8,7 +8,7 @@ Skill 與管理範本使用英文，Agent 仍依使用者語言說明。
 | 位置 | 用途 |
 |---|---|
 | `index.html` | 三段系統流程與互動課程卡 |
-| `course/workflow.json`、`workflow.template.html` | 現行流程資料與離線檢視器樣板 |
+| `course/workflow.archify.json`、`workflow.html` | Archify Workflow v2 原始規格與離線互動圖 |
 | `course/lesson.json` | 8 張課程卡、練習與目前實作引用 |
 | `course/build.py` | 從資料重建流程圖與首頁課程資料 |
 | `course/speaker-notes.zh-TW.md` | 與課程卡對應的講者教案 |
@@ -101,4 +101,17 @@ node tests/test_course_browser.mjs <browser-executable> <screenshot-directory>
 
 測試使用暫存專案，不寫個人進度或啟用共用 Skill。候選檢查工具只驗證紀錄；
 真實 Agent 品質仍須實跑案例並判讀證據。
-舊 Archify 截圖及檢查 JSON 是歷史產物，現行流程使用本教材離線檢視器。
+`course/build.py` 預設只同步課程文字，不覆寫架構圖。修改圖面請編輯
+`course/workflow.archify.json`，並使用本機 Archify 專案重新生成：
+
+```text
+python -B course/build.py --archify-root ../archify
+node ../archify/archify/bin/archify.mjs visual-check course/workflow.html --json
+```
+
+找不到 Chrome 時，可將 `ARCHIFY_CHROME` 環境變數設為已安裝的 Edge／Chromium 執行檔。
+閱讀教材不需要安裝 Archify；只有重新生成圖面時才需要本機 CLI。
+現行圖面使用 Archify 2.17.0-dev.1，繁體中文內容搭配英文固定工具列。
+新驗收紀錄為 `course/workflow.delivery.json` 與 `course/workflow.visual-check.json`；
+舊 `archify-delivery.json`、`archify-browser.json` 留作歷史紀錄。
+桌面四種尺寸已驗證；手機需使用縮放／平移，390px 寬度下固定工具列可能部分超出可視區。
