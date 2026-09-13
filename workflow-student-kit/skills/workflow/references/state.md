@@ -113,6 +113,50 @@ paths rather than creating a duplicate. Completed records retain historical
 locations. For later knowledge work, verify a user-provided path mapping and
 document it in the output; do not fabricate historical paths.
 
+## Teaching progress
+
+Each newly registered workflow receives `teaching` automatically: `level: "full"`
+when the local index has no workflows, otherwise `level: "brief"`, plus an empty
+`explained` list. Active and completed records both establish prior use. A mode-only
+request does not consume first use. Never register early just to save teaching.
+Before registration, use the current conversation to avoid repeated introduction;
+copy already-delivered explanations into the record once scope is confirmed.
+If interrupted before registration, persistent teaching progress is unavailable;
+use available conversation context and disclose that limit instead of claiming
+the opening lesson was saved.
+
+Optional `teaching` in register/checkpoint records:
+
+```json
+{
+  "teaching": {
+    "level": "full",
+    "explained": ["overview", "project:interview:before", "project:interview:after",
+                  "change:login:specification:before"]
+  }
+}
+```
+
+Use `overview`, `project:<stage>:before/after`, or
+`change:<actual-change-id>:<stage>:before/after` as individual topic keys (choose
+one suffix, not the literal slash). Project stages: interview, setup, closeout;
+change stages: design, specification, implementation, review, human-acceptance,
+sync, archive, readme. Include knowledge explanations in project closeout; an
+optional offer need not be accepted to finish its explanation. These are teaching
+topics, independent of the helper's implementation stage enum.
+
+Checkpoint the full accumulated list after delivering explanations at useful
+boundaries. An omitted teaching object preserves prior progress and level;
+explicit updates must preserve earlier markers. Apply an explicit ongoing teaching
+preference to this workflow only; temporary requests for detail leave its level
+unchanged. Save the final closeout explanation before `complete`, because completed
+records cannot be checkpointed. Teaching does not modify mode, offers, or counts.
+
+Version-1 records without teaching remain readable and default to brief when
+checkpointed. Do not infer their first-use order or invent past topic markers.
+Explain this missing-history limitation if relevant; honor an explicit request for
+full teaching for the active workflow. Never reset history to activate first use.
+
 ## Completion and preferences
 
 Every request also requires the latest expected_revision:

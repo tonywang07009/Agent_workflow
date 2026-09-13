@@ -6,6 +6,8 @@
 |---|---|---|
 | Invocation, resume summary, change checkpoint | SKILL.md | delivery.md handoffs and examples |
 | Stage order, completion evidence, downstream skill | references/delivery.md | Actual available skills; do not copy their procedures |
+| Human change acceptance and project README closeout | references/delivery.md | SKILL.md checkpoints; root README as user manual and file guide |
+| First-workflow teaching and later brief prompts | references/delivery.md; scripts/state.py | SKILL.md; references/state.md teaching level and topic markers |
 | Knowledge closeout | references/knowledge.md | Target project's Wiki governance, not teaching snapshots |
 | Tool selection and project mapping | references/project-context.md; installed docs/tools.md | Active OpenSpec project spec/toolbox; source templates under management/ |
 | Five-workflow threshold | scripts/state.py SWITCH_AFTER | SKILL.md, state.md, acceptance examples |
@@ -69,6 +71,26 @@ string matching or JSON validity cannot prove them:
    implementing coupons, then continue delivery without another routine approval.
 8. **Mode only:** switching checkpoint mode changes the preference without an
    interview or implementation.
+9. **Project README:** in either mode, present completed implementation and
+   validation for human acceptance. Pending/rejected review does not become
+   acceptance through agent review or passing tests. Reuse explicit acceptance
+   for the delivered scope. After sync/archive, create a missing root README or
+   update the existing manual with current usage and an actual annotated file
+   tree, preserving unrelated useful content. Verify links and applicable
+   commands before reporting closeout or continuing. Resume an interrupted
+   README update without repeating accepted review or archive.
 
-Automated tests validate the helper and installation. They do not establish full
+10. **Teaching:** with no registered workflows, introduce the complete route before
+    interviewing, then explain each stage's purpose/work/output before acting and
+    its actual result/evidence/next step afterward. Persist delivered topic markers
+    only after scope-confirmed registration. Resume that workflow across sessions
+    without replaying lessons. A second workflow starts brief even if the first
+    is unfinished. Expand a requested topic without resetting progress or adding
+    approvals; an explicit ongoing preference changes only that workflow's level.
+    Mode-only and status-only calls do not consume first use. Legacy history stays
+    intact; absent teaching records are not proof of prior lessons.
+
+Automated tests validate teaching defaults/persistence, the helper and installation.
+They do not prove explanation quality or a real first-project teaching experience.
+They do not establish full
 agent orchestration, five real completed projects, or improved Wiki/skill quality.

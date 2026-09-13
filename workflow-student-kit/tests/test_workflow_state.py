@@ -107,6 +107,68 @@ class WorkflowStateTests(unittest.TestCase):
             self.send("complete", id=wid, evidence=[str(self.root / "missing.md")])
         self.assertEqual(state.count(state.load(self.path)), 0)
 
+    def test_first_teaching_survives_resume_and_second_active_project_is_brief(self):
+        self.send("set-mode", mode="auto")  # Preferences alone do not consume first use.
+        first = self.record("first")
+        wid = self.send("register", record=first)["id"]
+        self.assertEqual(state.load(self.path)["workflows"][wid]["teaching"],
+                         {"level": "full", "explained": []})
+        first["teaching"] = {"level": "full", "explained": [
+            "overview", "change:change-0:specification:before"]}
+        self.send("checkpoint", id=wid, record=first)
+        expected = first.pop("teaching")
+        self.send("checkpoint", id=wid, record=first)  # Older callers preserve progress.
+        second = self.send("register", record=self.record("second"))
+        self.assertEqual(second["workflows"][second["id"]]["teaching"]["level"], "brief")
+        result = subprocess.run([sys.executable, "-B", str(SCRIPT), "--state", str(self.path)],
+                                capture_output=True, text=True, check=True)
+        saved = json.loads(result.stdout)
+        self.assertEqual(saved["workflows"][wid]["teaching"], expected)
+        self.assertEqual(saved["completed_count"], 0)
+        self.assertEqual(saved["mode"], "auto")
+
+    def test_explicit_teaching_preference_survives_completion_without_changing_defaults(self):
+        self.finish("first")
+        second = self.record("second")
+        wid = self.send("register", record=second)["id"]
+        second["teaching"] = {"level": "full", "explained": ["overview"]}
+        self.send("checkpoint", id=wid, record=second)
+        archived = self.archived(second)
+        self.send("checkpoint", id=wid, record=archived)
+        completed = self.send("complete", id=wid, evidence=archived["changes"][0]["evidence"])
+        self.assertEqual(completed["workflows"][wid]["teaching"], second["teaching"])
+        self.assertEqual(completed["completed_count"], 2)
+        self.assertEqual(completed["mode"], "change")
+        self.assertEqual(completed["switch_offer"], "not_offered")
+        third = self.send("register", record=self.record("third"))
+        self.assertEqual(third["workflows"][third["id"]]["teaching"]["level"], "brief")
+
+    def test_legacy_teaching_and_invalid_updates_preserve_history(self):
+        original = self.finish("old-completed")
+        record = self.record("old-active")
+        wid = self.send("register", record=record)["id"]
+        legacy = state.load(self.path)
+        for workflow in legacy["workflows"].values():
+            del workflow["teaching"]
+        self.path.write_text(json.dumps(legacy), encoding="utf-8")
+        saved = self.send("checkpoint", id=wid, record=record)
+        self.assertEqual(saved["workflows"][wid]["teaching"], {"level": "brief", "explained": []})
+        self.assertEqual(saved["completed_count"], 1)
+        self.assertEqual(saved["workflows"][original["id"]], legacy["workflows"][original["id"]])
+        before = self.path.read_bytes()
+        for invalid in (None, {"level": "auto"}, {"level": "full", "explained": "overview"},
+                        {"level": "full", "explained": ["overview", "overview"]}):
+            with self.assertRaises(ValueError):
+                self.send("checkpoint", id=wid, record={**record, "teaching": invalid})
+            self.assertEqual(self.path.read_bytes(), before)
+        damaged = copy.deepcopy(saved)
+        damaged["workflows"][wid]["teaching"] = {"level": "invalid"}
+        self.path.write_text(json.dumps(damaged), encoding="utf-8")
+        before = self.path.read_bytes()
+        with self.assertRaises(ValueError):
+            state.load(self.path)
+        self.assertEqual(self.path.read_bytes(), before)
+
     def test_cross_project_fifth_offer_decline_and_manual_modes(self):
         for i in range(5):
             result = self.finish(f"project-{i % 2}/workflow-{i}")

@@ -10,6 +10,20 @@ changes. Count it only when the entire development scope is complete. Tasks,
 individual changes, conversations, and tool calls do not count as workflows.
 Respond in the user's language. The user chooses model and effort.
 
+## Teaching level
+
+The first registered workflow for this local OS user receives full teaching;
+later workflows receive brief prompts, regardless of completion count or repo.
+Read the local index without writing before the entry interview to select the
+level; no registered workflows means first use, even if mode preferences exist.
+Follow [delivery.md](references/delivery.md#teaching-during-delivery) from the
+opening overview through project closeout. Explain more whenever requested.
+Persist level and delivered topic markers through [state.md](references/state.md#teaching-progress)
+after scope-confirmed registration. Resume the same workflow's teaching progress
+across conversations; do not repeat its opening lesson or completed explanations.
+Status-only and mode-only requests do not launch teaching or consume first use.
+Teaching never adds approvals or changes checkpoint mode or human acceptance.
+
 ## Start or resume
 
 1. Begin a new workflow with `$grill-with-docs`. Read applicable `AGENTS.md`
@@ -54,12 +68,19 @@ Example summary; replace paths and counts with verified values:
 ## Checkpoints and closeout
 
 - Default `change` mode: proceed through specification, implementation, review,
-  validation, sync, and archive within one change. Then report results, evidence,
-  and the next change, and wait. Do not add routine task or stage approvals.
+  validation, sync, and archive within one change. After implementation and
+  validation, obtain human review acceptance for the delivered change; reuse
+  explicit acceptance already given for that scope. After the change is complete
+  and accepted, create or update the project's root `README.md` as its user manual
+  and file guide, following [delivery.md](references/delivery.md#project-readme).
+  Then report results, evidence, and the next change, and wait. Do not add other
+  routine task or stage approvals.
 - `auto` mode: continue into the next eligible change within the agreed scope.
   Both modes pause for unresolved decisions, additional authorization, missing
   required evidence, or blockers that cannot be resolved within scope. Diagnose
   and fix authorized failures before treating them as blockers.
+  Human change acceptance and README closeout apply in both modes; automatic
+  checks or agent reviews alone do not establish human acceptance.
 - Complete the workflow once all scoped changes/tasks, required project-level
   acceptance, spec reconciliation, and archives are complete. Combine the last
   change report with project closeout. Count the same workflow ID only once.

@@ -40,6 +40,8 @@ def load(path):
             raise ValueError("Invalid workflow status; preserve it for recovery")
         if not isinstance(workflow.get("changes"), list):
             raise ValueError("Invalid changes; preserve state for recovery")
+        if "teaching" in workflow:
+            normalize_teaching(workflow["teaching"])
         if (not workflow["changes"] or workflow.get("knowledge_offer") not in
                 {"not_offered", "pending", "accepted", "declined", "done"}
                 or any(not isinstance(workflow.get(key), str) or not workflow[key].strip()
@@ -88,6 +90,17 @@ def evidence(items):
     return [absolute(p, "file") for p in items]
 
 
+def normalize_teaching(data):
+    if not isinstance(data, dict) or data.get("level") not in {"full", "brief"}:
+        raise ValueError("teaching must specify full or brief level")
+    explained = data.get("explained", [])
+    if (not isinstance(explained, list)
+            or any(not isinstance(key, str) or not key.strip() for key in explained)
+            or len(explained) != len(set(explained))):
+        raise ValueError("teaching.explained must list unique nonempty topic keys")
+    return {"level": data["level"], "explained": list(explained)}
+
+
 def normalize_record(data):
     if not isinstance(data, dict):
         raise ValueError("record must be an object")
@@ -98,6 +111,8 @@ def normalize_record(data):
               "openspec_root": absolute(data["openspec_root"], "dir"),
               "current_change": data.get("current_change"),
               "next_step": data.get("next_step", ""), "changes": []}
+    if "teaching" in data:
+        result["teaching"] = normalize_teaching(data["teaching"])
     context = data.get("project_context")
     if context is not None:
         if not isinstance(context, dict):
@@ -162,6 +177,12 @@ def apply(state, request):
             if previous is not None:
                 supplied = {**supplied, "project_context": previous}
         record = normalize_record(supplied)
+        if "teaching" not in record:
+            previous = state["workflows"].get(wid, {}).get("teaching")
+            record["teaching"] = normalize_teaching(previous) if previous is not None else {
+                "level": "full" if action == "register" and not state["workflows"] else "brief",
+                "explained": [],
+            }
         if action == "checkpoint" and state["workflows"][wid]["status"] != "active":
             raise ValueError("Completed workflows are immutable; do not recount")
         claimed = {c["original_path"] for c in record["changes"]}

@@ -248,5 +248,74 @@
     ],
     "upstream_modified": false,
     "tree_policy": "Generate from actual project paths and nesting; the user example specifies presentation only, not fixed categories or filenames. Mark omitted branches in scoped trees."
+  },
+  "project_readme_closeout": {
+    "date": "2026-09-14",
+    "authority": "User-authorized workflow instruction update without creating OpenSpec",
+    "scope": "Human acceptance of each delivered change, followed by a root project README user manual and actual file tree after change completion; both modes reuse existing acceptance",
+    "upstream_modified": false,
+    "files": [
+      {
+        "file": "README.md",
+        "package_sha256": "efcca01f598f6625aacf4155d7f56a56a31f257db5778e0f4a36db27e13f6c77"
+      },
+      {
+        "file": "docs/skill-contracts.md",
+        "package_sha256": "e8132a2c1c74b3f4e757b0ba2162827fd2272cec1c52c284eac5ade6e1f5b46f"
+      },
+      {
+        "file": "skills/workflow/SKILL.md",
+        "package_sha256": "022fb44451872e14a5d46996b1fe892383d44a7c797540bb248637472984f302"
+      },
+      {
+        "file": "skills/workflow/references/delivery.md",
+        "package_sha256": "7e3da089c592c1900c5ae4093b7a62efe33a4bb8d4b21207c65533e7e2876a60"
+      },
+      {
+        "file": "skills/workflow/references/customization.md",
+        "package_sha256": "fdbd8c25879daa8f7fe0cd0da1d902a783008293fe1b271f903fa9e3016ab22b"
+      }
+    ]
+  },
+  "first_workflow_teaching": {
+    "date": "2026-09-14",
+    "authority": "User-approved first-workflow full teaching, later brief prompts, on-demand explanation and persistent resume progress",
+    "scope": "Existing workflow delivery instructions and state helper; per-workflow teaching level and delivered topic markers; no new OpenSpec or personal state writes",
+    "upstream_modified": false,
+    "validation": "Temporary-fixture helper and CLI tests cover defaults, resume, overrides, completion, legacy history and invalid state; explanation quality requires real workflow use",
+    "files": [
+      {
+        "file": "README.md",
+        "package_sha256": "efcca01f598f6625aacf4155d7f56a56a31f257db5778e0f4a36db27e13f6c77"
+      },
+      {
+        "file": "docs/skill-contracts.md",
+        "package_sha256": "e8132a2c1c74b3f4e757b0ba2162827fd2272cec1c52c284eac5ade6e1f5b46f"
+      },
+      {
+        "file": "skills/workflow/SKILL.md",
+        "package_sha256": "022fb44451872e14a5d46996b1fe892383d44a7c797540bb248637472984f302"
+      },
+      {
+        "file": "skills/workflow/references/delivery.md",
+        "package_sha256": "7e3da089c592c1900c5ae4093b7a62efe33a4bb8d4b21207c65533e7e2876a60"
+      },
+      {
+        "file": "skills/workflow/references/customization.md",
+        "package_sha256": "fdbd8c25879daa8f7fe0cd0da1d902a783008293fe1b271f903fa9e3016ab22b"
+      },
+      {
+        "file": "skills/workflow/references/state.md",
+        "package_sha256": "8c3de6c773e68ad21cc824a299d34d281e5392060ebe36b648c49326715c946c"
+      },
+      {
+        "file": "skills/workflow/scripts/state.py",
+        "package_sha256": "74c25e8c315aeae11a4ebbcaaf58f570cc1d93c044deb028ae1c637f93be27b8"
+      },
+      {
+        "file": "tests/test_workflow_state.py",
+        "package_sha256": "e16f965838835a2b74b0c512dbffa01f278538f7db02619426fa5848e4b288fb"
+      }
+    ]
   }
 }

@@ -37,10 +37,19 @@ Design vocabulary belongs to codebase-design.
   recurse. Candidates remain outside active discovery until user activation.
 - The existing workflow state helper owns the optional project_context extension;
   legacy completion counts remain intact.
+- The same helper assigns full teaching to the first registered workflow and
+  brief prompts to later workflows, preserving per-workflow level and delivered
+  topic markers on resume. Delivery owns explanation quality; teaching does not
+  change checkpoint mode, human acceptance, or completion counts. Legacy records
+  remain readable without inventing prior lessons.
 - No router skill, speculative adapter or parallel implementation was added.
 - Archive owns the per-change code trace format and path verification; workflow
   reports its archived location. The tree follows actual project paths and nesting,
   marks omitted branches, and links canonical acceptance without duplicating it.
+- Workflow owns human change acceptance and the subsequent root README update
+  after change completion. The README is the current project user manual and file
+  guide; its actual tree and verified usage complement the archived code trace.
+  Both checkpoint modes require this closeout and reuse existing human acceptance.
 
 ## Validation map
 

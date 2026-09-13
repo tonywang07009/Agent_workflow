@@ -1,12 +1,21 @@
 # Agent workflow 教材
 
+第一次使用 workflow 開展專案時，Agent 會先介紹完整流程，再於每個階段開始前
+說明目的、工作與產出，完成後說明結果、證據與下一步。第二個 workflow 專案起
+改用簡短提示；使用者要求深入了解時，再展開當前主題。教學程度與已介紹的階段
+保存於既有本機 workflow 紀錄，跨對話續作不重播開場；教學不新增確認關卡。
+詳見 [教學流程](skills/workflow/references/delivery.md#teaching-during-delivery)。
+
 每個 change 結束時，archive 技能會在該 change 內建立 `code-trace.md`，
 隨歸檔保存並在完成報告提供位置。內容包含主程式、測試、需求與專案管理文件的
 實際目錄樹、絕對／專案相對路徑、用途，以及需求 → 程式入口 → 測試與執行證據的對照。
 樹狀圖依專案真實檔名與層級產生，不套用固定分類；大型專案可展開相關分支並標明省略範圍。
-既有 OpenSpec 需求直接連結，不另複製 `requirements.md`；測試數量依實際驗收要求，
-不把未執行的測試標為通過。
 格式與檢查由 [code trace 指引](skills/openspec-archive-change/references/code-trace.md) 統一維護。
+
+每個 change 完成且人工審核通過後，workflow 會建立或更新專案根目錄的 `README.md`，
+作為目前專案的使用說明書與檔案導覽，涵蓋功能、安裝啟動、操作範例、實際目錄樹與
+主要檔案用途，以及維護／驗證方式。兩種模式都適用；既有人工同意直接沿用，
+自動測試或 Agent review 不代表人工審核通過。詳見 [README 收尾指引](skills/workflow/references/delivery.md#project-readme)。
 
 直接開啟 `index.html`，可離線閱讀互動流程圖及 8 段、90 分鐘教學。
 Skill 與管理範本使用英文，Agent 仍依使用者語言說明。
