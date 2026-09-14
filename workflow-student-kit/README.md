@@ -14,11 +14,9 @@
 
 每個 change 完成且人工審核通過後，workflow 會建立或更新專案根目錄的 `README.md`，
 作為目前專案的使用說明書與檔案導覽，涵蓋功能、安裝啟動、操作範例、實際目錄樹與
-主要檔案用途，以及維護／驗證方式。兩種模式都適用；既有人工同意直接沿用，
-自動測試或 Agent review 不代表人工審核通過。詳見 [README 收尾指引](skills/workflow/references/delivery.md#project-readme)。
+主要檔案用途，以及維護／驗證方式。詳見 [README 收尾指引](skills/workflow/references/delivery.md#project-readme)。
 
 直接開啟 `index.html`，可離線閱讀互動流程圖及 8 段、90 分鐘教學。
-Skill 與管理範本使用英文，Agent 仍依使用者語言說明。
 
 ## 檔案配置
 
@@ -39,8 +37,7 @@ Skill 與管理範本使用英文，Agent 仍依使用者語言說明。
 | `install.py` | 安裝技能及 docs／management 資源，衝突時拒絕 |
 | `verify.py`、`tests/` | 教材一致性、安裝、狀態及候選檢查 |
 
-根目錄 AGENTS.md 管理本教材。原 spec.md 與 redcap_toolbox.md
-已通用化到 management/openspec-project/；本教材不建立實際 openspec/ 或 wiki/。
+根目錄 AGENTS.md 管理本教材。
 
 ## 安裝到練習專案
 
@@ -48,6 +45,7 @@ Skill 與管理範本使用英文，Agent 仍依使用者語言說明。
 python3 -B verify.py
 python3 install.py /absolute/path/to/your-practice-repo
 ```
+- 這邊 絕對路徑請下 ```bash  pwd ``` 來指向你對應的絕對路徑
 
 Windows 若無 python3，使用 python。目標目錄須已存在。安裝產物：
 
