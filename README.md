@@ -129,6 +129,11 @@ python -B course/build.py --archify-root ../archify
 node ../archify/archify/bin/archify.mjs visual-check course/workflow.html --json
 ```
 
+## MCP工具推薦
+```text
+workflow-student-kit/# MCP 工具.txt
+```
+
 找不到 Chrome 時，可將 `ARCHIFY_CHROME` 環境變數設為已安裝的 Edge／Chromium 執行檔。
 閱讀教材不需要安裝 Archify；只有重新生成圖面時才需要本機 CLI。
 現行圖面使用 Archify 2.17.0-dev.1，繁體中文內容搭配英文固定工具列。
